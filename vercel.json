@@ -1,0 +1,27 @@
+{
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/(.*).(jpg|jpeg|png|webp|svg|ico|woff2)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/(.*).html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ],
+  "redirects": [
+    { "source": "/envision-bosch-2", "destination": "/", "permanent": false },
+    { "source": "/envision-bosch-2.html", "destination": "/", "permanent": false }
+  ]
+}
