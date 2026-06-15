@@ -242,17 +242,18 @@
     /* ── STATS / COMBINED BAND ── */
     .stats-band {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-      background: rgba(255,255,255,0.08); margin: 1.25rem 0; border: 1px solid var(--border-dark);
+      background: rgba(255,255,255,0.08); margin: 0.7rem 0; border: 1px solid var(--border-dark);
     }
-    .stat-cell { padding: 1.1rem 1rem; background: var(--card); text-align: center; }
+    .stat-cell { padding: 0.95rem 1rem; background: var(--card); text-align: center; }
     .stat-n { font-size: 1.85rem; font-weight: 800; letter-spacing: -0.03em; color: #ffffff; }
     .stat-n span { color: var(--green); font-size: 0.62em; }
     .stat-l { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #ffffff; margin-top: 0.5rem; }
 
     /* ── CAMPUS CARDS ── */
-    .campus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(255,255,255,0.08); margin: 1.25rem 0; }
-    .campus-card { background: var(--card); padding: 1.4rem 1.5rem; transition: background 0.2s; }
+    .campus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(255,255,255,0.08); margin: 0.6rem 0; }
+    .campus-card { background: var(--card); padding: 1.4rem 1.5rem; transition: background 0.2s; overflow: hidden; }
     .campus-card:hover { background: var(--card-hover); }
+    .campus-photo { height: 58px; margin: -1.4rem -1.5rem 0.85rem; background-size: cover; background-position: center 42%; }
     .campus-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; }
     .campus-name { font-size: 1.05rem; font-weight: 800; color: #ffffff; }
     .campus-name small { display: block; font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.86); letter-spacing: 0.04em; margin-top: 2px; }
@@ -269,7 +270,7 @@
     .fed-band {
       display: grid; grid-template-columns: 0.9fr 3fr; gap: 1.5rem; align-items: center;
       background: linear-gradient(140deg, #08224c 0%, #0c2a5a 100%);
-      border-left: 2px solid var(--green); padding: 1.1rem 1.4rem; border-radius: 2px;
+      border-left: 2px solid var(--green); padding: 0.8rem 1.4rem; border-radius: 2px;
     }
     .fed-band-label { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 0.35rem; }
     .fed-band-head { font-size: 0.95rem; font-weight: 700; color: #ffffff; line-height: 1.25; }
@@ -279,12 +280,18 @@
     .fed-stat .ctx { font-size: 0.64rem; line-height: 1.45; color: #ffffff; margin-top: 4px; }
 
     /* ── MISSION SLIDE ── */
+    .mission-lead { display: grid; grid-template-columns: 1.55fr 1fr; gap: 1.6rem; align-items: center; margin: 0.4rem 0 1rem; }
     .mission-quote {
       font-size: 1.4rem; font-weight: 700; line-height: 1.4;
-      letter-spacing: -0.01em; color: #00346D; max-width: 880px; margin: 0.5rem 0 1.5rem;
+      letter-spacing: -0.01em; color: #00346D; max-width: 880px; margin: 0;
     }
     .mission-quote span { color: var(--green-text); }
-    .mission-proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(255,255,255,0.08); margin-bottom: 1.5rem; }
+    .mission-photo {
+      align-self: stretch; min-height: 148px; border-radius: 5px;
+      background-size: cover; background-position: center;
+      box-shadow: 0 16px 36px rgba(8,28,68,0.22), 0 0 0 1px rgba(255,255,255,0.05);
+    }
+    .mission-proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(255,255,255,0.08); margin-bottom: 1.1rem; }
     .mp-cell { background: var(--card); padding: 1.1rem 1.25rem; }
     .mp-cell .num { font-size: 1.5rem; font-weight: 800; color: var(--green); letter-spacing: -0.02em; }
     .mp-cell .lab { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #ffffff; margin-top: 4px; }
@@ -356,9 +363,10 @@
     .opp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: rgba(255,255,255,0.08); }
     .opp-tile {
       background: var(--card); padding: 1.3rem 1.4rem; cursor: pointer;
-      border-top: 2px solid transparent; transition: all 0.25s; position: relative;
+      border-top: 2px solid transparent; transition: all 0.25s; position: relative; overflow: hidden;
     }
     .opp-tile:hover { background: var(--card-hover); border-top-color: var(--green); }
+    .opp-photo { height: 74px; margin: -1.3rem -1.4rem 0.9rem; background-size: cover; background-position: center; }
     .opp-tile.featured { background: linear-gradient(140deg, var(--card) 0%, #0e2c5e 100%); border-top-color: var(--green-text); }
     .opp-tag { font-size: 0.56rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green); margin-bottom: 0.55rem; display: flex; align-items: center; gap: 0.5rem; }
     .opp-tag::before { content: ''; display: block; width: 12px; height: 1px; background: var(--green); }
@@ -397,6 +405,7 @@
     .opp-close:hover { background: rgba(255,255,255,0.14); color: #ffffff; }
     .opp-close svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; }
     .opp-modal-body { padding: 1.5rem 2rem 2rem; }
+    .opp-modal-photo { height: 180px; margin: -1.5rem -2rem 1.4rem; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
     .opp-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.08); margin-bottom: 1.4rem; border: 1px solid rgba(255,255,255,0.1); }
     .opp-detail-cell { background: var(--card); padding: 0.95rem 1.1rem; }
     .opp-detail-cell .dl { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 0.35rem; }
@@ -415,8 +424,9 @@
 
     /* ── WHY-IT-WORKS CARDS ── */
     .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(255,255,255,0.08); margin: 1.25rem 0; }
-    .why-card { background: var(--card); padding: 1.3rem 1.4rem; border-top: 2px solid transparent; transition: all 0.25s; }
+    .why-card { background: var(--card); padding: 1.3rem 1.4rem; border-top: 2px solid transparent; transition: all 0.25s; overflow: hidden; }
     .why-card:hover { background: var(--card-hover); border-top-color: var(--green-text); }
+    .why-photo { height: 86px; margin: -1.3rem -1.4rem 1rem; background-size: cover; background-position: center; }
     .why-card h3 { font-size: 0.92rem; font-weight: 700; color: #ffffff; margin-bottom: 0.4rem; }
     .why-card p { font-size: 0.76rem; line-height: 1.55; color: rgba(255,255,255,0.94); }
     .why-icon { width: 36px; height: 36px; background: rgba(120,190,33,0.08); border: 1px solid rgba(120,190,33,0.15); border-radius: 2px; display: flex; align-items: center; justify-content: center; margin-bottom: 0.8rem; }
@@ -428,6 +438,21 @@
     .step-num { font-size: 1.7rem; font-weight: 800; color: var(--green); letter-spacing: -0.03em; margin-bottom: 0.4rem; }
     .step h3 { font-size: 0.78rem; font-weight: 700; margin-bottom: 0.4rem; text-align: center; color: #ffffff; }
     .step p { font-size: 0.7rem; line-height: 1.5; color: #ffffff; margin-top: auto; }
+    .floor-banner {
+      height: 156px; margin: 1.1rem 0; border-radius: 5px; position: relative; overflow: hidden;
+      background-size: cover; background-position: center 42%;
+      box-shadow: 0 18px 40px rgba(8,28,68,0.24), 0 0 0 1px rgba(255,255,255,0.05);
+    }
+    .floor-banner::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(6,18,38,0.62) 0%, rgba(6,18,38,0.12) 42%, transparent 70%);
+    }
+    .floor-banner .fb-cap {
+      position: absolute; left: 1.3rem; bottom: 1.05rem; z-index: 2;
+      color: #fff; font-size: 0.82rem; font-weight: 700; line-height: 1.3; max-width: 60%;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.5);
+    }
+    .floor-banner .fb-cap span { display: block; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green); margin-bottom: 0.3rem; }
     .step::after { content: '→'; position: absolute; right: -8px; top: 50%; transform: translateY(-50%); color: var(--green); font-size: 1.1rem; font-weight: 700; z-index: 3; }
     .step:last-child::after { display: none; }
 
@@ -546,6 +571,7 @@
 
       <div class="campus-grid">
         <article class="campus-card">
+          <div class="campus-photo" style="background-image:url('campus-wichita.jpg')" role="img" aria-label="Aerial view of the Envision Wichita campus"></div>
           <div class="campus-head">
             <div class="campus-name">Wichita Campus<small>Wichita, KS</small></div>
             <div class="campus-id"><strong>Since 1933</strong></div>
@@ -562,6 +588,7 @@
         </article>
 
         <article class="campus-card">
+          <div class="campus-photo" style="background-image:url('campus-dallas.jpg')" role="img" aria-label="Exterior of the Envision Dallas campus building"></div>
           <div class="campus-head">
             <div class="campus-name">Dallas Campus<small>Farmers Branch, TX</small></div>
             <div class="campus-id"><strong>Since 1931</strong></div>
@@ -599,7 +626,10 @@
     <div class="slide-grain"></div>
     <div class="slide-content">
       <div class="eyebrow">Our Mission</div>
-      <p class="mission-quote">"To improve the quality of life and provide inspiration and opportunity for people who are <span>blind or have low vision</span> through employment, outreach, rehabilitation, education and research."</p>
+      <div class="mission-lead">
+        <p class="mission-quote">"To improve the quality of life and provide inspiration and opportunity for people who are <span>blind or have low vision</span> through employment, outreach, rehabilitation, education and research."</p>
+        <div class="mission-photo" style="background-image:url('mission-workforce.jpg')" role="img" aria-label="An Envision team member who is blind walks the manufacturing floor with a guide dog"></div>
+      </div>
 
       <div class="mission-proof">
         <div class="mp-cell"><div class="num">88%</div><div class="lab">BVI Direct Labor</div><div class="ctx">Combined Direct Labor performed by team members who are blind or have low vision. Substantially exceeds AbilityOne's 75% threshold.</div></div>
@@ -690,6 +720,7 @@
 
       <div class="opp-grid">
         <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('metal')">
+          <div class="opp-photo" style="background-image:url('fit-upstream.jpg')" role="img" aria-label="Small-press stamping operation"></div>
           <div class="opp-tag">Opportunity 01</div>
           <h3>Sheet Metal Components</h3>
           <p class="opp-line">Small-press stamping of the metal parts you make in-house today, on your dies.</p>
@@ -697,6 +728,7 @@
         </div>
 
         <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('kitting')">
+          <div class="opp-photo" style="background-image:url('opp-kitting.jpg')" role="img" aria-label="Envision team member assembling packaged kits on the line"></div>
           <div class="opp-tag">Opportunity 02</div>
           <h3>Parts Kitting &amp; Assembly</h3>
           <p class="opp-line">Pre-built kits and sub-assemblies delivered ready for your line, mirroring your Source One model.</p>
@@ -704,6 +736,7 @@
         </div>
 
         <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('print')">
+          <div class="opp-photo" style="background-image:url('opp-print.jpg')" role="img" aria-label="Envision-branded label rolls from the Wichita print operation"></div>
           <div class="opp-tag">Opportunity 03</div>
           <h3>Print, Labels &amp; Booklets</h3>
           <p class="opp-line">The booklets and labels shipping in every unit, produced by our Wichita print operation.</p>
@@ -711,6 +744,7 @@
         </div>
 
         <div class="opp-tile featured" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('wiring')">
+          <div class="opp-photo" style="background-image:url('opp-wiring.jpg')" role="img" aria-label="Close, repetitive component sub-assembly handwork"></div>
           <div class="opp-tag">Opportunity 04</div>
           <h3>Wiring &amp; Sub-Assembly</h3>
           <p class="opp-line">Your longest cycle time and most labor-intensive operation, offloaded to where repetition is the strength.</p>
@@ -731,17 +765,17 @@
 
       <div class="why-grid">
         <div class="why-card">
-          <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+          <div class="why-photo" style="background-image:url('why-reliable.jpg')" role="img" aria-label="A longtime Envision team member on the warehouse floor"></div>
           <h3>Reliable by Design</h3>
           <p>Our workforce is built around consistency and retention above industry average. The repetitive operations that strain a traditional line are the ones we hold steady.</p>
         </div>
         <div class="why-card">
-          <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16l4-4 3 3 5-6"/></svg></div>
+          <div class="why-photo" style="background-image:url('fit-upstream.jpg')" role="img" aria-label="A small production press of the kind Envision stands up for a program"></div>
           <h3>Stable Enough to Invest</h3>
           <p>Financial stability lets us stand up equipment for a program rather than asking you to. Small presses run $100K to $200K, with Bosch dies. We can carry that investment.</p>
         </div>
         <div class="why-card">
-          <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/></svg></div>
+          <div class="why-photo" style="background-image:url('why-equipment.jpg')" role="img" aria-label="Rows of production equipment on the Envision manufacturing floor"></div>
           <h3>Equipment Pathway</h3>
           <p>As Bosch decommissions older lines, that tooling can move to our floor instead of to scrap. It is a clean way to seed a program with proven equipment.</p>
         </div>
@@ -765,6 +799,10 @@
         <div class="step"><div class="step-num">2</div><h3>Bring Operations</h3><p>Include your operations team so the technical fit gets assessed in the room.</p></div>
         <div class="step"><div class="step-num">3</div><h3>Dallas Capabilities</h3><p>Review Dallas-campus capabilities by presentation to show the full system.</p></div>
         <div class="step"><div class="step-num">4</div><h3>Scope the First Program</h3><p>Compile candidate components and pick a first program to pilot together.</p></div>
+      </div>
+
+      <div class="floor-banner" style="background-image:url('floor-tour.jpg')" role="img" aria-label="The Envision manufacturing floor, the operation Bosch is invited to walk in person">
+        <div class="fb-cap"><span>175,000 sq ft · Wichita</span>Manufacturing, kitting, and print under one roof.</div>
       </div>
 
       <div class="impact-line">We will pull together a candidate list from the operations we discussed. <span>Pick the tour date</span> and we will host the operations team in Wichita.</div>
@@ -873,6 +911,7 @@
   const opps = {
     metal: {
       tag: 'Opportunity 01',
+      img: 'fit-upstream.jpg', imgAlt: 'Small-press stamping operation on the Envision floor',
       title: 'Sheet Metal Components',
       sub: 'Small-press stamping of the metal parts you produce in-house today, run on your dies, on our floor.',
       details: [
@@ -889,6 +928,7 @@
     },
     kitting: {
       tag: 'Opportunity 02',
+      img: 'opp-kitting.jpg', imgAlt: 'Envision team member assembling packaged kits on the line',
       title: 'Parts Kitting & Assembly',
       sub: 'Pre-built kits and sub-assemblies delivered line-ready, mirroring the model your Source One division already runs.',
       details: [
@@ -905,6 +945,7 @@
     },
     print: {
       tag: 'Opportunity 03',
+      img: 'opp-print.jpg', imgAlt: 'Envision-branded label rolls from the Wichita print operation',
       title: 'Print, Labels & Booklets',
       sub: 'The booklets and labels shipping inside every unit, produced by Envision’s established Wichita print operation.',
       details: [
@@ -921,6 +962,7 @@
     },
     wiring: {
       tag: 'Opportunity 04',
+      img: 'opp-wiring.jpg', imgAlt: 'Close, repetitive component sub-assembly handwork',
       title: 'Wiring & Sub-Assembly',
       sub: 'Your longest cycle time and most labor-intensive operation, moved to where repetition is the core strength.',
       details: [
@@ -945,7 +987,9 @@
     document.getElementById('oppModalTag').textContent = o.tag;
     document.getElementById('oppModalTitle').textContent = o.title;
     document.getElementById('oppModalSub').textContent = o.sub;
-    let html = '<div class="opp-detail-grid">';
+    let html = '';
+    if (o.img) html += '<div class="opp-modal-photo" style="background-image:url(\'' + o.img + '\')" role="img" aria-label="' + (o.imgAlt || '') + '"></div>';
+    html += '<div class="opp-detail-grid">';
     o.details.forEach(d => { html += '<div class="opp-detail-cell"><div class="dl">' + d[0] + '</div><div class="dv">' + d[1] + '</div></div>'; });
     html += '</div>';
     html += '<div class="opp-section-h">Why it fits</div><ul class="opp-points">';
