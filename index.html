@@ -8,7 +8,10 @@
   <meta property="og:title" content="Envision × Bosch — Manufacturing Partnership">
   <meta property="og:description" content="A domestic manufacturing partnership built for repetitive, high-reliability production.">
   <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2308224c'/%3E%3Ccircle cx='32' cy='32' r='15' fill='%2378BE21'/%3E%3C/svg%3E">
   <link rel="preload" as="image" href="cover-1.jpg">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -465,10 +468,10 @@
   <div class="slide active" data-slide="0">
     <div class="cover-carousel">
       <div class="cover-photo is-active" style="background-image:url('cover-1.jpg')"></div>
-      <div class="cover-photo" style="background-image:url('cover-2.jpg')"></div>
-      <div class="cover-photo" style="background-image:url('cover-3.jpg')"></div>
-      <div class="cover-photo" style="background-image:url('cover-4.jpg')"></div>
-      <div class="cover-photo" style="background-image:url('cover-5.jpg')"></div>
+      <div class="cover-photo" data-bg="cover-2.jpg"></div>
+      <div class="cover-photo" data-bg="cover-3.jpg"></div>
+      <div class="cover-photo" data-bg="cover-4.jpg"></div>
+      <div class="cover-photo" data-bg="cover-5.jpg"></div>
     </div>
     <div class="cover-overlay"></div>
     <div class="slide-grain"></div>
@@ -480,7 +483,7 @@
         <span class="cover-x">&times;</span>
         <span class="cover-bosch">BOSCH</span>
       </div>
-      <h1 class="cover-tagline">Two manufacturers. <em>One line.</em></h1>
+      <h1 class="cover-tagline">Two manufacturers. <em>One supply line.</em></h1>
       <p class="cover-sub">A domestic partnership built for the repetitive, high-reliability production that feeds your line. Local to Wichita. Engineered to scale.</p>
       <div class="scroll-hint"><span>Begin</span><div class="scroll-line"></div></div>
     </div>
@@ -913,12 +916,22 @@
   (function () {
     const photos = document.querySelectorAll('.cover-photo');
     if (photos.length < 2) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // hold first frame
+    // Lazy-load: only cover-1 ships up front; the rest fetch just before they're shown.
+    const ensureLoaded = (el) => {
+      if (el && el.dataset.bg) {
+        el.style.backgroundImage = "url('" + el.dataset.bg + "')";
+        delete el.dataset.bg;
+      }
+    };
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // hold first frame, no extra loads
+    ensureLoaded(photos[1]); // prefetch the next frame so the first fade is ready
     let i = 0;
     const INTERVAL = 5500; // ms each photo is shown
     setInterval(() => {
       photos[i].classList.remove('is-active');
       i = (i + 1) % photos.length;
+      ensureLoaded(photos[i]);                         // current frame (already prefetched last round)
+      ensureLoaded(photos[(i + 1) % photos.length]);   // prefetch the one after
       // retrigger the zoom animation cleanly
       photos[i].style.animation = 'none';
       void photos[i].offsetWidth;   // force reflow
