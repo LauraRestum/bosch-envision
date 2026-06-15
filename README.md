@@ -17,3 +17,4 @@ No build step — it's plain HTML/CSS/JS served from the repo root.
 - `cover-1.jpg … cover-5.jpg` — compressed cover-carousel photos (each < 300 KB)
 - `cover-1.jpg` is preloaded; the rest lazy-load as the carousel advances
 - The white Envision cover logo is inlined as base64; `Envision_PrimaryLogo_WHITE[49404].png` is its source
+- `fit-finished-unit.jpg` / `fit-upstream.jpg` — Strategic Fit slide photos (resized to 1600px, < 200 KB each), sourced from the Envision capabilities and Streamlight decks
