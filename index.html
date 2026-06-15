@@ -36,11 +36,27 @@
     body {
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
-      background: var(--bg-body);
+      background: #061226;          /* letterbox backdrop around the slide canvas */
       color: var(--text-light);
       -webkit-font-smoothing: antialiased;
       overflow: hidden;
       height: 100vh; height: 100dvh; width: 100vw;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── FIXED PRESENTATION CANVAS ──
+       Everything lives inside a fixed 1280×720 (16:9) stage, the PowerPoint
+       standard. JS scales the whole stage uniformly to fit any screen, so the
+       layout is pixel-identical on every device — it never reflows or
+       "zooms" differently per machine. */
+    #stage {
+      position: relative;
+      width: 1280px; height: 720px;
+      flex: none;
+      transform-origin: center center;
+      overflow: hidden;
+      background: var(--bg-body);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,0,0,0.06);
     }
 
     /* Skip link — visible only on keyboard focus */
@@ -62,7 +78,7 @@
 
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: absolute; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
       padding: 1.1rem 3.5rem;
       background: #ffffff;
@@ -102,7 +118,7 @@
     .nav-arrow.skip.hidden { display: none; }
 
     /* ── SLIDES ── */
-    .slides-wrapper { position: fixed; top: 0; left: 0; right: 0; bottom: 0; }
+    .slides-wrapper { position: absolute; inset: 0; }
     .slide {
       position: absolute; top: 0; left: 0; right: 0; bottom: 0;
       display: flex; align-items: center; justify-content: center;
@@ -120,7 +136,7 @@
     .slide-content.centered {
       text-align: center; display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      min-height: calc(100vh - 58px); min-height: calc(100dvh - 58px); padding: 4rem;
+      min-height: calc(720px - 58px); padding: 4rem;
     }
 
     /* ── TYPOGRAPHY ── */
@@ -130,9 +146,9 @@
       display: inline-flex; align-items: center; gap: 0.75rem;
     }
     .eyebrow::before { content: ''; display: block; width: 22px; height: 1px; background: var(--green); opacity: 0.7; }
-    h1 { font-size: clamp(2.6rem, 5.2vw, 4.6rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 1.5rem; }
+    h1 { font-size: 4rem; font-weight: 800; line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 1.5rem; }
     h1 em { font-style: normal; color: var(--green-text); }
-    h2 { font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+    h2 { font-size: 2.3rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
     h2 em { font-style: normal; color: var(--green-text); }
     h3 { font-size: 1.05rem; font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
     .subtitle { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; max-width: 560px; }
@@ -143,7 +159,7 @@
     /* ── COVER ── */
     .cover-glow {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-      width: 70vw; height: 70vw; max-width: 900px; max-height: 900px;
+      width: 680px; height: 680px;
       background: radial-gradient(circle, rgba(120,190,33,0.1) 0%, transparent 60%);
       pointer-events: none; z-index: 1;
     }
@@ -155,7 +171,7 @@
     .cover-envision { height: 52px; width: auto; display: block; }
     .cover-x { font-size: 1.6rem; font-weight: 300; color: #15294c; line-height: 1; }
     .cover-bosch { font-size: 2.7rem; font-weight: 800; letter-spacing: 0.04em; color: var(--bosch-red); line-height: 1; font-family: 'Montserrat', sans-serif; }
-    .cover-tagline { font-size: clamp(2.4rem, 5vw, 4rem); margin-bottom: 1.5rem; }
+    .cover-tagline { font-size: 3.4rem; margin-bottom: 1.5rem; }
     .cover-sub { font-size: 0.95rem; color: var(--text-muted); line-height: 1.65; max-width: 600px; margin: 0 auto; }
 
     /* ── COVER IMAGE CAROUSEL ── */
@@ -229,7 +245,7 @@
       background: rgba(255,255,255,0.08); margin: 1.25rem 0; border: 1px solid var(--border-dark);
     }
     .stat-cell { padding: 1.1rem 1rem; background: var(--card); text-align: center; }
-    .stat-n { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 800; letter-spacing: -0.03em; color: #ffffff; }
+    .stat-n { font-size: 1.85rem; font-weight: 800; letter-spacing: -0.03em; color: #ffffff; }
     .stat-n span { color: var(--green); font-size: 0.62em; }
     .stat-l { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #ffffff; margin-top: 0.5rem; }
 
@@ -264,7 +280,7 @@
 
     /* ── MISSION SLIDE ── */
     .mission-quote {
-      font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.4;
+      font-size: 1.4rem; font-weight: 700; line-height: 1.4;
       letter-spacing: -0.01em; color: #00346D; max-width: 880px; margin: 0.5rem 0 1.5rem;
     }
     .mission-quote span { color: var(--green-text); }
@@ -345,14 +361,14 @@
 
     /* Modal for opportunity depth */
     .opp-modal {
-      position: fixed; inset: 0; z-index: 200;
+      position: absolute; inset: 0; z-index: 200;
       background: rgba(0,8,28,0.88); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
       display: none; align-items: center; justify-content: center; padding: 2rem;
     }
     .opp-modal.open { display: flex; }
     .opp-modal-card {
       background: var(--card); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px;
-      max-width: 760px; width: 100%; max-height: 86vh; overflow-y: auto;
+      max-width: 760px; width: 100%; max-height: 620px; overflow-y: auto;
       box-shadow: 0 30px 80px rgba(0,20,55,0.45), 0 0 0 1px rgba(255,255,255,0.04);
       animation: modalRise 0.35s cubic-bezier(0.2,0.8,0.2,1) both;
     }
@@ -434,43 +450,20 @@
     .slide.active .impact-line, .slide.active .contact-cards { animation: fadeUp 0.6s 0.4s ease both; }
 
     /* ── KEY HINT ── */
-    .key-hint { position: fixed; bottom: 1.5rem; right: 3.5rem; font-size: 0.58rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #2a3a5e; z-index: 50; }
+    .key-hint { position: absolute; bottom: 1.5rem; right: 3.5rem; font-size: 0.58rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #2a3a5e; z-index: 50; }
     .key-hint kbd { display: inline-block; padding: 2px 6px; background: rgba(0,52,109,0.07); border: 1px solid rgba(0,52,109,0.1); border-radius: 2px; font-family: 'Montserrat', sans-serif; font-size: 0.55rem; margin: 0 2px; }
 
     .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: #2a3a5e; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; z-index: 2; }
     .scroll-line { width: 1px; height: 28px; background: linear-gradient(to bottom, rgba(120,190,33,0.5), transparent); animation: scrollPulse 2s ease-in-out infinite; }
     @keyframes scrollPulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
 
-    /* ── RESPONSIVE ── */
+    /* ── RESPONSIVE ──
+       The deck no longer reflows per device. The fixed 1280×720 canvas is
+       scaled as a single unit by #stage (see fitStage() in the script), so
+       the layout is identical on phones, laptops, and projectors alike —
+       just larger or smaller. On very narrow screens we only hide the
+       keyboard hint, which is meaningless without a keyboard. */
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .slide-content { padding: 2rem 1.5rem; }
-      .slide-content.centered { padding: 3rem 1.5rem; }
-      .stats-band { grid-template-columns: repeat(2, 1fr); }
-      .campus-grid { grid-template-columns: 1fr; }
-      .fed-band { grid-template-columns: 1fr; }
-      .fed-stats { grid-template-columns: repeat(2, 1fr); }
-      .mission-proof { grid-template-columns: 1fr; }
-      .mission-pillars { grid-template-columns: repeat(2, 1fr); }
-      .two-col { grid-template-columns: 1fr; gap: 2rem; }
-      .cover-envision { height: 38px; }
-      .cover-bosch { font-size: 2rem; }
-      .cover-lockup { gap: 1rem; }
-      .fit-split { grid-template-columns: 1fr; }
-      .fit-bosch { border-radius: 2px 2px 0 0; }
-      .fit-envision { border-radius: 0 0 2px 2px; }
-      .fit-seam { flex-direction: row; padding: 0.75rem 0; }
-      .fit-seam-line { width: auto; height: 1px; flex: 1; min-height: 0; background: linear-gradient(to right, transparent, rgba(0,52,109,0.12), transparent); }
-      .fit-seam-chip { writing-mode: horizontal-tb; transform: none; padding: 0.4rem 0.9rem; }
-      .fit-seam-chip svg { transform: none; }
-      .opp-grid { grid-template-columns: 1fr; }
-      .why-grid { grid-template-columns: 1fr; }
-      .steps-flow { grid-template-columns: repeat(2, 1fr); }
-      .step::after { display: none; }
-      .opp-detail-grid { grid-template-columns: 1fr; }
-      .contact-cards { flex-direction: column; align-items: center; }
-      .contact-addrs { flex-direction: column; gap: 1rem; }
-      .nav-dots { display: none; }
       .key-hint { display: none; }
     }
   </style>
@@ -478,6 +471,9 @@
 <body>
 
 <a href="#main" class="skip-link">Skip to content</a>
+
+<!-- Fixed 16:9 presentation canvas — scaled to fit any screen by fitStage() -->
+<div id="stage">
 
 <!-- ═══════════ NAV ═══════════ -->
 <nav>
@@ -806,7 +802,24 @@
 <!-- ── KEY HINT ── -->
 <div class="key-hint"><kbd>←</kbd> <kbd>→</kbd> to navigate</div>
 
+</div><!-- /#stage -->
+
 <script>
+  // ── Fit the fixed 1280×720 canvas to the screen ──
+  // Uniform scale (never distorts), centred with letterbox margins. Identical
+  // layout on every device — like presenting a .pptx full-screen.
+  (function () {
+    const stage = document.getElementById('stage');
+    const BASE_W = 1280, BASE_H = 720;
+    function fitStage() {
+      const scale = Math.min(window.innerWidth / BASE_W, window.innerHeight / BASE_H);
+      stage.style.transform = 'scale(' + scale + ')';
+    }
+    window.addEventListener('resize', fitStage);
+    window.addEventListener('orientationchange', fitStage);
+    fitStage();
+  })();
+
   let currentSlide = 0;
   const totalSlides = 8;
   const slides = document.querySelectorAll('.slide');
