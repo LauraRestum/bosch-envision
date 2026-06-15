@@ -20,7 +20,7 @@
       --blue-dark: #001852;
       --blue-mid: #004bb5;
       --green: #78BE21;
-      --green-text: #4f8a17;
+      --green-text: #4a8014;
       --card: #08224c;
       --card-2: #0b2a5c;
       --card-hover: #0f3068;
@@ -40,7 +40,24 @@
       color: var(--text-light);
       -webkit-font-smoothing: antialiased;
       overflow: hidden;
-      height: 100vh; width: 100vw;
+      height: 100vh; height: 100dvh; width: 100vw;
+    }
+
+    /* Skip link — visible only on keyboard focus */
+    .skip-link {
+      position: fixed; top: -100px; left: 1rem; z-index: 300;
+      background: var(--card); color: #ffffff; padding: 0.6rem 1rem;
+      border-radius: 2px; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus { top: 0.75rem; }
+
+    /* Visible keyboard focus indicator */
+    a:focus-visible, button:focus-visible,
+    .opp-tile:focus-visible, [role="button"]:focus-visible {
+      outline: 2px solid var(--green-text);
+      outline-offset: 2px; border-radius: 2px;
     }
 
     /* ── NAV ── */
@@ -77,8 +94,10 @@
     .nav-arrow.skip {
       width: auto; padding: 0 0.6rem; gap: 0.35rem;
       font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--green); border-color: rgba(120,190,33,0.2);
+      color: var(--green-text); border-color: rgba(120,190,33,0.2);
     }
+    .nav-arrow svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+    .nav-arrow.skip svg { width: 12px; height: 12px; }
     .nav-arrow.skip:hover { color: var(--green-text); border-color: var(--green); background: rgba(120,190,33,0.06); }
     .nav-arrow.skip.hidden { display: none; }
 
@@ -101,7 +120,7 @@
     .slide-content.centered {
       text-align: center; display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      min-height: calc(100vh - 58px); padding: 4rem;
+      min-height: calc(100vh - 58px); min-height: calc(100dvh - 58px); padding: 4rem;
     }
 
     /* ── TYPOGRAPHY ── */
@@ -175,6 +194,16 @@
     /* Reduced-motion: hold a single static frame, no zoom, no fade churn */
     @media (prefers-reduced-motion: reduce) {
       .cover-photo { transition: none; animation: none; transform: none; }
+      .scroll-line { animation: none; }
+      .slide.active .eyebrow,
+      .slide.active h1, .slide.active h2,
+      .slide.active .subtitle, .slide.active .mission-quote,
+      .slide.active .hero-actions,
+      .slide.active .stats-band, .slide.active .campus-grid, .slide.active .fed-band,
+      .slide.active .mission-proof, .slide.active .mission-pillars, .slide.active .opp-grid,
+      .slide.active .why-grid, .slide.active .steps-flow, .slide.active .two-col,
+      .slide.active .impact-line, .slide.active .contact-cards { animation: none; }
+      .opp-modal-card { animation: none; }
     }
 
     /* ── HERO ── */
@@ -296,7 +325,7 @@
     .fit-seam-chip svg { width: 12px; height: 12px; stroke: var(--green); fill: none; stroke-width: 2.5; transform: rotate(90deg); }
 
     /* ── OPPORTUNITY TILES (expandable) ── */
-    .opp-hint { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin: 0.4rem 0 1rem; }
+    .opp-hint { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green-text); margin: 0.4rem 0 1rem; }
     .opp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: rgba(255,255,255,0.08); }
     .opp-tile {
       background: var(--card); padding: 1.3rem 1.4rem; cursor: pointer;
@@ -339,6 +368,7 @@
       display: flex; align-items: center; justify-content: center; font-family: inherit; transition: all 0.2s;
     }
     .opp-close:hover { background: rgba(255,255,255,0.14); color: #ffffff; }
+    .opp-close svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; }
     .opp-modal-body { padding: 1.5rem 2rem 2rem; }
     .opp-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.08); margin-bottom: 1.4rem; border: 1px solid rgba(255,255,255,0.1); }
     .opp-detail-cell { background: var(--card); padding: 0.95rem 1.1rem; }
@@ -447,6 +477,8 @@
 </head>
 <body>
 
+<a href="#main" class="skip-link">Skip to content</a>
+
 <!-- ═══════════ NAV ═══════════ -->
 <nav>
   <div class="logo">ENVISION <span class="logo-x">×</span> <span class="logo-bosch">BOSCH</span></div>
@@ -454,15 +486,15 @@
     <div class="nav-dots" id="navDots"></div>
     <div class="slide-counter"><span class="current" id="currentSlide">01</span> / <span id="totalSlides">08</span></div>
     <div class="nav-arrows">
-      <button class="nav-arrow" id="prevBtn" onclick="changeSlide(-1)">←</button>
-      <button class="nav-arrow" id="nextBtn" onclick="changeSlide(1)">→</button>
-      <button class="nav-arrow skip hidden" id="skipBtn" onclick="goToSlide(3)" title="Skip the mission overview">Skip ⇥</button>
+      <button class="nav-arrow" id="prevBtn" onclick="changeSlide(-1)" aria-label="Previous slide"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="nav-arrow" id="nextBtn" onclick="changeSlide(1)" aria-label="Next slide"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      <button class="nav-arrow skip hidden" id="skipBtn" onclick="goToSlide(3)" aria-label="Skip the mission overview" title="Skip the mission overview">Skip <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 6l6 6-6 6M13 6l6 6-6 6"/></svg></button>
     </div>
   </div>
 </nav>
 
 <!-- ═══════════ SLIDES ═══════════ -->
-<div class="slides-wrapper">
+<main class="slides-wrapper" id="main">
 
   <!-- ───── SLIDE 0: COVER ───── -->
   <div class="slide active" data-slide="0">
@@ -648,28 +680,28 @@
       <p class="opp-hint">Tap any tile to explore in depth</p>
 
       <div class="opp-grid">
-        <div class="opp-tile" onclick="openOpp('metal')">
+        <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('metal')">
           <div class="opp-tag">Opportunity 01</div>
           <h3>Sheet Metal Components</h3>
           <p class="opp-line">Small-press stamping of the metal parts you make in-house today, on your dies.</p>
           <div class="opp-expand">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
         </div>
 
-        <div class="opp-tile" onclick="openOpp('kitting')">
+        <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('kitting')">
           <div class="opp-tag">Opportunity 02</div>
           <h3>Parts Kitting &amp; Assembly</h3>
           <p class="opp-line">Pre-built kits and sub-assemblies delivered ready for your line, mirroring your Source One model.</p>
           <div class="opp-expand">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
         </div>
 
-        <div class="opp-tile" onclick="openOpp('print')">
+        <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('print')">
           <div class="opp-tag">Opportunity 03</div>
           <h3>Print, Labels &amp; Booklets</h3>
           <p class="opp-line">The booklets and labels shipping in every unit, produced by our Wichita print operation.</p>
           <div class="opp-expand">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
         </div>
 
-        <div class="opp-tile featured" onclick="openOpp('wiring')">
+        <div class="opp-tile featured" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('wiring')">
           <div class="opp-tag">Opportunity 04</div>
           <h3>Wiring &amp; Sub-Assembly</h3>
           <p class="opp-line">Your longest cycle time and most labor-intensive operation, offloaded to where repetition is the strength.</p>
@@ -756,13 +788,13 @@
     </div>
   </div>
 
-</div>
+</main>
 
 <!-- ═══════════ OPPORTUNITY MODAL ═══════════ -->
 <div class="opp-modal" id="oppModal" onclick="if(event.target===this)closeOpp()">
-  <div class="opp-modal-card">
+  <div class="opp-modal-card" role="dialog" aria-modal="true" aria-labelledby="oppModalTitle">
     <div class="opp-modal-head">
-      <button class="opp-close" onclick="closeOpp()">✕</button>
+      <button class="opp-close" onclick="closeOpp()" aria-label="Close dialog"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
       <div class="opp-tag" id="oppModalTag">Opportunity</div>
       <h2 id="oppModalTitle"></h2>
       <p id="oppModalSub"></p>
@@ -787,6 +819,8 @@
   for (let i = 0; i < totalSlides; i++) {
     const dot = document.createElement('button');
     dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    if (i === 0) dot.setAttribute('aria-current', 'true');
     dot.onclick = () => goToSlide(i);
     dotsContainer.appendChild(dot);
   }
@@ -795,13 +829,15 @@
     if (n < 0 || n >= totalSlides) return;
     slides[currentSlide].classList.remove('active');
     dotsContainer.children[currentSlide].classList.remove('active');
+    dotsContainer.children[currentSlide].removeAttribute('aria-current');
     currentSlide = n;
     slides[currentSlide].classList.add('active');
     dotsContainer.children[currentSlide].classList.add('active');
+    dotsContainer.children[currentSlide].setAttribute('aria-current', 'true');
     currentEl.textContent = String(currentSlide + 1).padStart(2, '0');
     prevBtn.disabled = currentSlide === 0;
     nextBtn.disabled = currentSlide === totalSlides - 1;
-    // Skip-mission button only shows on the campus slide (slide 0)
+    // Skip-mission button only shows on the mission slide (index 1)
     skipBtn.classList.toggle('hidden', currentSlide !== 1);
     slides[currentSlide].scrollTop = 0;
   }
@@ -876,8 +912,10 @@
   };
 
   const oppModal = document.getElementById('oppModal');
+  let lastFocused = null;
   function openOpp(key) {
     const o = opps[key];
+    lastFocused = document.activeElement;
     document.getElementById('oppModalTag').textContent = o.tag;
     document.getElementById('oppModalTitle').textContent = o.title;
     document.getElementById('oppModalSub').textContent = o.sub;
@@ -890,14 +928,38 @@
     html += '<div class="opp-tour-quote"><strong>From the floor tour</strong>' + o.quote + '</div>';
     document.getElementById('oppModalBody').innerHTML = html;
     oppModal.classList.add('open');
+    const closeBtn = oppModal.querySelector('.opp-close');
+    if (closeBtn) closeBtn.focus();
   }
-  function closeOpp() { oppModal.classList.remove('open'); }
+  function closeOpp() {
+    oppModal.classList.remove('open');
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+    lastFocused = null;
+  }
+
+  // Activate opportunity tiles with keyboard (Enter / Space)
+  document.querySelectorAll('.opp-tile').forEach((tile) => {
+    tile.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tile.click(); }
+    });
+  });
 
   // Keyboard nav
   document.addEventListener('keydown', (e) => {
-    if (oppModal.classList.contains('open')) { if (e.key === 'Escape') closeOpp(); return; }
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); changeSlide(1); }
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); changeSlide(-1); }
+    if (oppModal.classList.contains('open')) {
+      if (e.key === 'Escape') { closeOpp(); return; }
+      if (e.key === 'Tab') {
+        // Trap focus inside the dialog
+        const focusables = oppModal.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+        if (!focusables.length) return;
+        const first = focusables[0], last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+      return;
+    }
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); changeSlide(1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); changeSlide(-1); }
   });
 
   // Touch swipe
