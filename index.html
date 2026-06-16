@@ -143,10 +143,7 @@
     }
     .slide.active { opacity: 1; visibility: visible; }
     .slide-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
-    .slide-grain {
-      position: absolute; inset: 0; opacity: 0.025; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
+    .slide-grain { display: none; }
     .slide-content { position: relative; z-index: 2; max-width: 1100px; width: 100%; padding: 1.5rem 4rem; }
     .slide-content.centered {
       text-align: center; display: flex; flex-direction: column;
@@ -175,15 +172,15 @@
     .cover-glow {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
       width: 680px; height: 680px;
-      background: radial-gradient(circle, rgba(120,190,33,0.1) 0%, transparent 60%);
+      background: radial-gradient(circle, rgba(120,190,33,0.06) 0%, transparent 65%);
       pointer-events: none; z-index: 1;
     }
     .cover-eyebrow {
       font-size: 0.66rem; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase;
       color: var(--green-text); margin-bottom: 2.5rem;
     }
-    .cover-lockup { display: flex; align-items: center; justify-content: center; gap: 1.6rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
-    .cover-envision { height: 52px; width: auto; display: block; }
+    .cover-lockup { position: relative; z-index: 3; display: flex; align-items: center; justify-content: center; gap: 1.6rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+    .cover-envision { height: 50px; width: auto; display: block; filter: drop-shadow(0 4px 14px rgba(0,0,0,0.45)); }
     .cover-x { font-size: 1.6rem; font-weight: 300; color: #15294c; line-height: 1; }
     .cover-bosch { font-size: 2.7rem; font-weight: 800; letter-spacing: 0.04em; color: var(--bosch-red); line-height: 1; font-family: 'Montserrat', sans-serif; }
     .cover-tagline { font-size: 3.4rem; margin-bottom: 1.5rem; }
@@ -208,10 +205,9 @@
       position: absolute; inset: 0; z-index: 1; pointer-events: none;
       background:
         linear-gradient(135deg,
-          rgba(4,18,46,0.90) 0%,
-          rgba(8,34,76,0.82) 45%,
-          rgba(0,24,82,0.78) 100%),
-        radial-gradient(circle at 50% 60%, rgba(0,13,40,0.25) 0%, rgba(0,13,40,0.6) 100%);
+          rgba(4,18,46,0.82) 0%,
+          rgba(8,34,76,0.7) 50%,
+          rgba(0,24,82,0.68) 100%);
     }
 
     /* Cover text recolored for the dark hero (these classes are cover-only, safe to override) */
@@ -259,7 +255,7 @@
     /* ── STATS / COMBINED BAND ── */
     .stats-band {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.65rem;
-      margin: 0.8rem 0;
+      margin: 0.4rem 0;
     }
     .stat-cell {
       padding: 0.95rem 1rem; background: linear-gradient(160deg, var(--card-2) 0%, var(--card) 100%);
@@ -272,14 +268,14 @@
     .stat-l { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #ffffff; margin-top: 0.5rem; }
 
     /* ── CAMPUS CARDS ── */
-    .campus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0.7rem 0; }
+    .campus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0.4rem 0; }
     .campus-card {
       background: linear-gradient(160deg, var(--card-2) 0%, var(--card) 100%); padding: 1.4rem 1.5rem;
       border-radius: var(--radius); box-shadow: var(--shadow-card); overflow: hidden;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
     .campus-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-    .campus-photo { height: 52px; margin: -1.4rem -1.5rem 0.8rem; background-size: cover; background-position: center; }
+    .campus-photo { height: 76px; margin: -1.4rem -1.5rem 0.65rem; background-size: cover; background-position: center; }
     .campus-name { font-family: var(--font-display); }
     .campus-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; }
     .campus-name { font-size: 1.05rem; font-weight: 800; color: #ffffff; }
@@ -297,7 +293,7 @@
     .fed-band {
       display: grid; grid-template-columns: 0.9fr 3fr; gap: 1.5rem; align-items: center;
       background: linear-gradient(140deg, #08224c 0%, #0c2a5a 100%);
-      border-left: 3px solid var(--green); padding: 1rem 1.5rem; border-radius: var(--radius);
+      border-left: 3px solid var(--green); padding: 0.8rem 1.5rem; border-radius: var(--radius);
       box-shadow: var(--shadow-card);
     }
     .fed-band-label { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 0.35rem; }
@@ -612,8 +608,7 @@
     <div class="slide-content centered">
       <div class="cover-eyebrow">Manufacturing Partnership Proposal</div>
       <div class="cover-lockup">
-        <img class="cover-envision" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA4QAAACeCAYAAABq68RbAABeUklEQVR42u2dd5hkVdH/P9U9s8vC7pIzSlLAAAqYJSiiAmIWFQF9VZIE409BXlDBhEhOoqCSJCkgQUHwBRFRQAQRJUhe8hI2Lxumu35/nDrbZy89Mz0zfe90567v89ynZ2en07nnVNW3ouBYCqoqgNg/058j6iJSH8VrTgSWAaYCk5NrKjAFWB5Yzn43BZhkP0+0x357xP6uCtTtNZcBtNOW0h4fAo4RkctVtTLStXM4HA6Hw+FwOBz5QZzwLflZjexpi6+xLLAisIJdqwGrACvbtQqwkhG9qfa4rJG3SA57CbuJyHmqWhWRmh89h8PhcDgcDofDCWHepG/EhE9VJxiRWxlYA1jbHtcB1gRWNfK3EiGSt+xYPuogj63cJ7G/7/R7WAP6gOnAK0RkjqpKK8Tb4XA4HA6Hw+FwOCFsK+lT1WWM1K0OrGtEbwN7jORvBUJEr1XU7b11kPWVJuvdS9HZOlAB3i4if/UoocPhcDgcDofD0Rno61LiF+v4dJDnTEkI37rARva4vhG+VWktsteM6GU/ixjZcQyPqi+Bw+FwOBwOh8PhhHAw4oeRq2GJn6r2EVI31wM2BDYhRPpeQUjtXH2Y76cJ4WtG9pzojfGW2mPN1nEG8O+EaDscDgcDofD4XA4epEQNon6aZJCWMn87gRDVewXwSuDVwKsIEb+1CR03B0M9Qz6y7+sRq7GRPaV5BDUl9XGPfVNEZni6qMPhcDgcDofD0TnIvY4tIX8x2jbo2AZVXd2I36uA19i1PqG+b5khyElKMCoZ8ucYG9lLfzeSyOmLwCzgPuAnInKhj51wOBwOh8PhcDhKTAhbJX/W2GVdYGNgM7s2IqR8Thnk5dNoX7O6QkfrhK8Z6YtkuhWyNwDMJnQOnQ48DjwGPAE8CjwDPAXMEJE5ds+dDDocDofD4XA4HGUhhE3SPgcjf8sSavw2BV4PvM6I4No0T1lNa/uc+I2c7KVEL5vK2WqK7FzgWbueMML3BPAI8LSRvWeB2cOlf9o+qXiaqMPhcDgcDofD0cWEMBr2vLTmL/2bSYSUz02Bze3axMhfM9Sc+I2J/NWS+1hpce0WAs8DzwFPdsjeU/a76cAsEVnQwr6o8NLRH0tIqc8bdDgcDofD4XA4upQQGgmsArWsYa+qVUKHz82ANwJbEGr+1nHyN26oEbp5Pk+I5D1mBO8Re3zSfj8zpnKOwAmQEtEl0UcnfA6Hw+FwOBwOR0kJYYYcrEbo8PkG4M1GBNcH+p38FYq4ro8Cv6UR2XvKyN4MQu3ewDD3s9rkvqRkz6N7DofD4fD4XA4HL1ICFVVRURUVfcFvgScufDpU4UWyK/P3vsHFXLU1jwx6UQ+rAOksYbLYyYRltmvlwKgXggdDofD4XA4HN1JCPtEZEBVfwrsnTH849xatnbMUTw+IBTA+U9D7ONMYE5SjW5eR9mf7iWGBe8row
-        <span class="cover-x">&times;</span>
+        <img class="cover-envision" src="Envision_PrimaryLogo_WHITE[49404].png" alt="Envision">&times;</span>
         <span class="cover-bosch">BOSCH</span>
       </div>
       <h1 class="cover-tagline">Two manufacturers. <em>One supply line.</em></h1>
@@ -736,96 +731,8 @@
     </div>
   </div>
 
-  <!-- ───── SLIDE 3: STRATEGIC FIT ───── -->
+  <!-- ───── SLIDE 3: CAPABILITIES & SERVICES (hover reveals overview) ───── -->
   <div class="slide" data-slide="3">
-    <div class="slide-bg" style="background: #dde6f1;"></div>
-    <div class="slide-grain"></div>
-    <div class="slide-content">
-      <div class="eyebrow">The Strategic Fit</div>
-      <h2>Your core competency is a unit <em>out the door.</em></h2>
-      <p class="subtitle wide">The work that feeds that unit is ours. Envision is built around the repetitive, high-consistency production that is hardest to staff reliably anywhere else. Two halves of one line, not a side job.</p>
-
-      <div class="fit-split">
-        <div class="fit-side fit-bosch">
-          <div class="fit-tag">Bosch does best</div>
-          <div class="fit-headline">The finished unit</div>
-          <ul class="fit-list">
-            <li>Final assembly and system integration</li>
-            <li>Engineering, brand, and distribution</li>
-            <li>The high-value work that ships out your door</li>
-          </ul>
-        </div>
-
-        <div class="fit-seam">
-          <div class="fit-seam-line"></div>
-          <div class="fit-seam-chip">Envision feeds your line<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-          <div class="fit-seam-line"></div>
-        </div>
-
-        <div class="fit-side fit-envision">
-          <div class="fit-tag">Envision does best</div>
-          <div class="fit-headline">The work upstream</div>
-          <ul class="fit-list">
-            <li>Repetitive, high-cycle-count tasks that challenge traditional staffing</li>
-            <li>Sub-assembly and component work that feeds final assembly</li>
-            <li>Consistent output where turnover is the usual enemy</li>
-            <li>Local production, one drive from your dock</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="impact-line">Sheet metal is not your core competency. A unit going out the door is. <span>This partnership begins exactly where that line points.</span></div>
-    </div>
-  </div>
-
-  <!-- ───── SLIDE 4: WHAT WE'RE PROPOSING (expandable tiles) ───── -->
-  <div class="slide" data-slide="4">
-    <div class="slide-bg" style="background: linear-gradient(160deg, #f5f8fc 0%, #ffffff 100%);"></div>
-    <div class="slide-grain"></div>
-    <div class="slide-content">
-      <div class="eyebrow">What We're Proposing</div>
-      <h2>Four places to <em>start.</em></h2>
-      <p class="subtitle wide">Each one maps to an operation already running on your floor, and to a capability already running on ours.</p>
-      <p class="opp-hint">Tap any tile to explore in depth</p>
-
-      <div class="opp-grid">
-        <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('metal')">
-          <div class="opp-photo" style="background-image:url('fit-upstream.jpg')" role="img" aria-label="Small-press stamping operation"></div>
-          <div class="opp-tag">Opportunity 01</div>
-          <h3>Sheet Metal Components</h3>
-          <p class="opp-line">Small-press stamping of the metal parts you make in-house today, on your dies.</p>
-          <div class="opp-expand">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-        </div>
-
-        <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('kitting')">
-          <div class="opp-photo" style="background-image:url('opp-kitting.jpg')" role="img" aria-label="Envision team member assembling packaged kits on the line"></div>
-          <div class="opp-tag">Opportunity 02</div>
-          <h3>Parts Kitting &amp; Assembly</h3>
-          <p class="opp-line">Pre-built kits and sub-assemblies delivered ready for your line, mirroring your Source One model.</p>
-          <div class="opp-expand">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-        </div>
-
-        <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('print')">
-          <div class="opp-photo" style="background-image:url('opp-print.jpg')" role="img" aria-label="Envision-branded label rolls from the Wichita print operation"></div>
-          <div class="opp-tag">Opportunity 03</div>
-          <h3>Print, Labels &amp; Booklets</h3>
-          <p class="opp-line">The booklets and labels shipping in every unit, produced by our Wichita print operation.</p>
-          <div class="opp-expand">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-        </div>
-
-        <div class="opp-tile featured" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('wiring')">
-          <div class="opp-photo" style="background-image:url('opp-wiring.jpg')" role="img" aria-label="Close, repetitive component sub-assembly handwork"></div>
-          <div class="opp-tag">Opportunity 04</div>
-          <h3>Wiring &amp; Sub-Assembly</h3>
-          <p class="opp-line">Your longest cycle time and most labor-intensive operation, offloaded to where repetition is the strength.</p>
-          <div class="opp-expand">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ───── SLIDE 5: CAPABILITIES & SERVICES (hover reveals overview) ───── -->
-  <div class="slide" data-slide="5">
     <div class="slide-bg" style="background: linear-gradient(160deg, #eef3fa 0%, #ffffff 100%);"></div>
     <div class="slide-grain"></div>
     <div class="slide-content">
@@ -898,6 +805,94 @@
             <div class="cap-face"><span class="cap-kind cap-kind--svc">Service</span><h3>Quality Assurance &amp; Compliance</h3></div>
             <div class="cap-desc"><p>ISO 9001:2015 across the Wichita and Dallas campuses. Material and dimensional validation against gauge, strength, and spec in the on-site Quality Labs, with DCMA Alternate Release authorized out of Dallas.</p></div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───── SLIDE 4: STRATEGIC FIT ───── -->
+  <div class="slide" data-slide="4">
+    <div class="slide-bg" style="background: #dde6f1;"></div>
+    <div class="slide-grain"></div>
+    <div class="slide-content">
+      <div class="eyebrow">The Strategic Fit</div>
+      <h2>Your core competency is a unit <em>out the door.</em></h2>
+      <p class="subtitle wide">The work that feeds that unit is ours. Envision is built around the repetitive, high-consistency production that is hardest to staff reliably anywhere else. Two halves of one line, not a side job.</p>
+
+      <div class="fit-split">
+        <div class="fit-side fit-bosch">
+          <div class="fit-tag">Bosch does best</div>
+          <div class="fit-headline">The finished unit</div>
+          <ul class="fit-list">
+            <li>Final assembly and system integration</li>
+            <li>Engineering, brand, and distribution</li>
+            <li>The high-value work that ships out your door</li>
+          </ul>
+        </div>
+
+        <div class="fit-seam">
+          <div class="fit-seam-line"></div>
+          <div class="fit-seam-chip">Envision feeds your line<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          <div class="fit-seam-line"></div>
+        </div>
+
+        <div class="fit-side fit-envision">
+          <div class="fit-tag">Envision does best</div>
+          <div class="fit-headline">The work upstream</div>
+          <ul class="fit-list">
+            <li>Repetitive, high-cycle-count tasks that challenge traditional staffing</li>
+            <li>Sub-assembly and component work that feeds final assembly</li>
+            <li>Consistent output where turnover is the usual enemy</li>
+            <li>Local production, one drive from your dock</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="impact-line">Sheet metal is not your core competency. A unit going out the door is. <span>This partnership begins exactly where that line points.</span></div>
+    </div>
+  </div>
+
+  <!-- ───── SLIDE 5: WHAT WE'RE PROPOSING (expandable tiles) ───── -->
+  <div class="slide" data-slide="5">
+    <div class="slide-bg" style="background: linear-gradient(160deg, #f5f8fc 0%, #ffffff 100%);"></div>
+    <div class="slide-grain"></div>
+    <div class="slide-content">
+      <div class="eyebrow">What We're Proposing</div>
+      <h2>Four places to <em>start.</em></h2>
+      <p class="subtitle wide">Each one maps to an operation already running on your floor, and to a capability already running on ours.</p>
+      <p class="opp-hint">Tap any tile to explore in depth</p>
+
+      <div class="opp-grid">
+        <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('metal')">
+          <div class="opp-photo" style="background-image:url('fit-upstream.jpg')" role="img" aria-label="Small-press stamping operation"></div>
+          <div class="opp-tag">Opportunity 01</div>
+          <h3>Sheet Metal Components</h3>
+          <p class="opp-line">Small-press stamping of the metal parts you make in-house today, on your dies.</p>
+          <div class="opp-expand">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </div>
+
+        <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('kitting')">
+          <div class="opp-photo" style="background-image:url('opp-kitting.jpg')" role="img" aria-label="Envision team member assembling packaged kits on the line"></div>
+          <div class="opp-tag">Opportunity 02</div>
+          <h3>Parts Kitting &amp; Assembly</h3>
+          <p class="opp-line">Pre-built kits and sub-assemblies delivered ready for your line, mirroring your Source One model.</p>
+          <div class="opp-expand">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </div>
+
+        <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('print')">
+          <div class="opp-photo" style="background-image:url('opp-print.jpg')" role="img" aria-label="Envision-branded label rolls from the Wichita print operation"></div>
+          <div class="opp-tag">Opportunity 03</div>
+          <h3>Print, Labels &amp; Booklets</h3>
+          <p class="opp-line">The booklets and labels shipping in every unit, produced by our Wichita print operation.</p>
+          <div class="opp-expand">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </div>
+
+        <div class="opp-tile featured" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('wiring')">
+          <div class="opp-photo" style="background-image:url('opp-wiring.jpg')" role="img" aria-label="Close, repetitive component sub-assembly handwork"></div>
+          <div class="opp-tag">Opportunity 04</div>
+          <h3>Wiring &amp; Sub-Assembly</h3>
+          <p class="opp-line">Your longest cycle time and most labor-intensive operation, offloaded to where repetition is the strength.</p>
+          <div class="opp-expand">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
         </div>
       </div>
     </div>
