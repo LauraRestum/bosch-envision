@@ -190,12 +190,12 @@
     .cover-photo {
       position: absolute; inset: 0;
       background-size: cover; background-position: center;
-      opacity: 0; transition: opacity 1.4s ease;
+      opacity: 0; transition: opacity 2.6s ease;
       transform: scale(1.04);            /* gentle Ken Burns base */
     }
     .cover-photo.is-active {
       opacity: 1;
-      animation: coverZoom 7s ease-out forwards;  /* slow zoom while visible */
+      animation: coverZoom 11s ease-out forwards;  /* slow zoom while visible */
     }
     @keyframes coverZoom { from { transform: scale(1.04); } to { transform: scale(1.12); } }
 
@@ -204,9 +204,9 @@
       position: absolute; inset: 0; z-index: 1; pointer-events: none;
       background:
         linear-gradient(135deg,
-          rgba(4,18,46,0.82) 0%,
-          rgba(8,34,76,0.7) 50%,
-          rgba(0,24,82,0.68) 100%);
+          rgba(4,18,46,0.93) 0%,
+          rgba(8,34,76,0.86) 50%,
+          rgba(0,24,82,0.85) 100%);
     }
 
     /* Cover text recolored for the dark hero (these classes are cover-only, safe to override) */
@@ -1191,7 +1191,7 @@
       };
       ensureLoaded(photos[1]); // prefetch the next frame so the first fade is ready
       let i = 0;
-      const INTERVAL = 5500; // ms each photo is shown
+      const INTERVAL = 8500; // ms each photo is shown
       setInterval(() => {
         photos[i].classList.remove('is-active');
         i = (i + 1) % photos.length;
