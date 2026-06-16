@@ -961,7 +961,7 @@
         </div>
 
         <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('kitting')">
-          <div class="opp-photo" style="background-image:url('opp-kitting.jpg');background-position:center 66%" role="img" aria-label="Envision team member assembling packaged kits on the line"></div>
+          <div class="opp-photo" style="background-image:url('opp-kitting.jpg');background-position:center 28%" role="img" aria-label="Envision team member assembling packaged kits on the line"></div>
           <div class="opp-tag">Opportunity 02</div>
           <h3>Parts Kitting &amp; Assembly</h3>
           <p class="opp-line">Pre-built kits and sub-assemblies delivered ready for your line, mirroring your Source One model.</p>
@@ -1246,7 +1246,7 @@
     },
     kitting: {
       tag: 'Opportunity 02',
-      img: 'opp-kitting.jpg', imgAlt: 'Envision team member assembling packaged kits on the line',
+      img: 'opp-kitting.jpg', imgPos: 'center 28%', imgAlt: 'Envision team member assembling packaged kits on the line',
       title: 'Parts Kitting & Assembly',
       sub: 'Pre-built kits and sub-assemblies delivered line-ready, mirroring the model your Source One division already runs.',
       details: [
@@ -1306,7 +1306,7 @@
     document.getElementById('oppModalTitle').textContent = o.title;
     document.getElementById('oppModalSub').textContent = o.sub;
     let html = '';
-    if (o.img) html += '<div class="opp-modal-photo" style="background-image:url(\'' + o.img + '\')" role="img" aria-label="' + (o.imgAlt || '') + '"></div>';
+    if (o.img) html += '<div class="opp-modal-photo" style="background-image:url(\'' + o.img + '\');background-position:' + (o.imgPos || 'center') + '" role="img" aria-label="' + (o.imgAlt || '') + '"></div>';
     html += '<div class="opp-detail-grid">';
     o.details.forEach(d => { html += '<div class="opp-detail-cell"><div class="dl">' + d[0] + '</div><div class="dv">' + d[1] + '</div></div>'; });
     html += '</div>';
