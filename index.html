@@ -95,9 +95,9 @@
       position: absolute; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
       padding: 1.1rem 3.5rem;
-      background: rgba(255,255,255,0.72);
-      backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%);
+      background: #ffffff;
       border-bottom: 1px solid rgba(0,52,109,0.08);
+      box-shadow: 0 1px 0 rgba(0,52,109,0.04);
     }
     .logo { font-family: var(--font-display); font-weight: 800; font-size: 0.85rem; letter-spacing: 0.16em; text-transform: uppercase; color: #00346D; }
     .logo span { color: var(--green-text); }
@@ -143,7 +143,6 @@
     }
     .slide.active { opacity: 1; visibility: visible; }
     .slide-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
-    .slide-grain { display: none; }
     .slide-content { position: relative; z-index: 2; max-width: 1100px; width: 100%; padding: 1.5rem 4rem; }
     .slide-content.centered {
       text-align: center; display: flex; flex-direction: column;
@@ -181,8 +180,8 @@
     }
     .cover-lockup { position: relative; z-index: 3; display: flex; align-items: center; justify-content: center; gap: 1.6rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
     .cover-envision { height: 50px; width: auto; display: block; filter: drop-shadow(0 4px 14px rgba(0,0,0,0.45)); }
-    .cover-x { font-size: 1.6rem; font-weight: 300; color: #15294c; line-height: 1; }
-    .cover-bosch { font-size: 2.7rem; font-weight: 800; letter-spacing: 0.04em; color: var(--bosch-red); line-height: 1; font-family: 'Montserrat', sans-serif; }
+    .cover-x { font-size: 1.9rem; font-weight: 400; color: #15294c; line-height: 1; }
+    .cover-bosch-logo { height: 44px; width: auto; display: block; filter: drop-shadow(0 0 10px rgba(255,255,255,0.35)) drop-shadow(0 4px 14px rgba(0,0,0,0.45)); }
     .cover-tagline { font-size: 3.4rem; margin-bottom: 1.5rem; }
     .cover-sub { font-size: 0.95rem; color: var(--text-muted); line-height: 1.65; max-width: 600px; margin: 0 auto; }
 
@@ -215,7 +214,7 @@
     .cover-tagline { color: #ffffff; }
     .cover-tagline em { color: var(--green); }   /* bright green reads better on dark than --green-text */
     .cover-sub { color: rgba(255,255,255,0.92); }
-    .cover-x { color: rgba(255,255,255,0.45); }
+    .cover-x { color: rgba(255,255,255,0.9); text-shadow: 0 2px 10px rgba(0,0,0,0.45); }
     .scroll-hint { color: rgba(255,255,255,0.55); }
 
     /* Reduced-motion: hold a single static frame, no zoom, no fade churn */
@@ -529,7 +528,7 @@
        text is recoloured for a dark background (scoped, like the cover). */
     .contact-content .eyebrow { color: var(--green); }
     .contact-content .logo-mark { color: #ffffff; }
-    .contact-content .logo-mark .lm-x { color: rgba(255,255,255,0.45); }
+    .contact-content .logo-mark .lm-x { color: rgba(255,255,255,0.9); }
     .contact-content .logo-mark .lm-bosch { color: #ff5a64; }
     .contact-content h2 { color: #ffffff; }
     .contact-content h2 em { color: var(--green); }
@@ -602,15 +601,13 @@
       <div class="cover-photo" data-bg="cover-4.jpg"></div>
       <div class="cover-photo" data-bg="cover-5.jpg"></div>
     </div>
-    <div class="cover-overlay"></div>
-    <div class="slide-grain"></div>
-    <div class="cover-glow"></div>
+    <div class="cover-overlay"></div>    <div class="cover-glow"></div>
     <div class="slide-content centered">
       <div class="cover-eyebrow">Manufacturing Partnership Proposal</div>
       <div class="cover-lockup">
         <img class="cover-envision" src="envision-logo-white.png" alt="Envision">
         <span class="cover-x">&times;</span>
-        <span class="cover-bosch">BOSCH</span>
+        <img class="cover-bosch-logo" src="Bosch-logo.svg.png" alt="Bosch">
       </div>
       <h1 class="cover-tagline">Two manufacturers. <em>One supply line.</em></h1>
       <p class="cover-sub">A domestic partnership built for the repetitive, high-reliability production that feeds your line. Local to Wichita. Engineered to scale.</p>
@@ -620,9 +617,7 @@
 
   <!-- ───── SLIDE 1: CAMPUSES ───── -->
   <div class="slide" data-slide="1">
-    <div class="slide-bg" style="background: linear-gradient(160deg, #f5f8fc 0%, #ffffff 100%);"></div>
-    <div class="slide-grain"></div>
-    <div class="slide-content">
+    <div class="slide-bg" style="background: linear-gradient(160deg, #f5f8fc 0%, #ffffff 100%);"></div>    <div class="slide-content">
       <div class="eyebrow">The Campuses</div>
       <h2>Two campuses. <em>One operation.</em></h2>
       <p class="subtitle wide">410,000 square feet of climate-controlled industrial space across Wichita and Dallas. 90+ years of continuous U.S. manufacturing. One of the largest combined workforces of people who are blind or have low vision in American industry.</p>
@@ -687,9 +682,7 @@
 
   <!-- ───── SLIDE 2: MISSION (skippable) ───── -->
   <div class="slide" data-slide="2">
-    <div class="slide-bg" style="background: linear-gradient(160deg, #eef3fa 0%, #ffffff 100%);"></div>
-    <div class="slide-grain"></div>
-    <div class="slide-content">
+    <div class="slide-bg" style="background: linear-gradient(160deg, #eef3fa 0%, #ffffff 100%);"></div>    <div class="slide-content">
       <div class="eyebrow">Our Mission</div>
       <div class="ms-band">
         <div class="ms-band__photo" style="background-image:url('mission-child.jpg');background-position:70% center" role="img" aria-label="A child at the Envision Child Development Center playing on the soft-block floor"></div>
@@ -734,9 +727,7 @@
 
   <!-- ───── SLIDE 3: CAPABILITIES & SERVICES (hover reveals overview) ───── -->
   <div class="slide" data-slide="3">
-    <div class="slide-bg" style="background: linear-gradient(160deg, #eef3fa 0%, #ffffff 100%);"></div>
-    <div class="slide-grain"></div>
-    <div class="slide-content">
+    <div class="slide-bg" style="background: linear-gradient(160deg, #eef3fa 0%, #ffffff 100%);"></div>    <div class="slide-content">
       <div class="eyebrow">The Full System</div>
       <h2>Everything Envision can <em>build and run.</em></h2>
       <p class="subtitle wide">Eight manufacturing capabilities and the services that support them, all shipping under contract today. Hover any tile for the overview.</p>
@@ -813,9 +804,7 @@
 
   <!-- ───── SLIDE 4: STRATEGIC FIT ───── -->
   <div class="slide" data-slide="4">
-    <div class="slide-bg" style="background: #dde6f1;"></div>
-    <div class="slide-grain"></div>
-    <div class="slide-content">
+    <div class="slide-bg" style="background: #dde6f1;"></div>    <div class="slide-content">
       <div class="eyebrow">The Strategic Fit</div>
       <h2>Your core competency is a unit <em>out the door.</em></h2>
       <p class="subtitle wide">The work that feeds that unit is ours. Envision is built around the repetitive, high-consistency production that is hardest to staff reliably anywhere else. Two halves of one line, not a side job.</p>
@@ -855,9 +844,7 @@
 
   <!-- ───── SLIDE 5: WHAT WE'RE PROPOSING (expandable tiles) ───── -->
   <div class="slide" data-slide="5">
-    <div class="slide-bg" style="background: linear-gradient(160deg, #f5f8fc 0%, #ffffff 100%);"></div>
-    <div class="slide-grain"></div>
-    <div class="slide-content">
+    <div class="slide-bg" style="background: linear-gradient(160deg, #f5f8fc 0%, #ffffff 100%);"></div>    <div class="slide-content">
       <div class="eyebrow">What We're Proposing</div>
       <h2>Four places to <em>start.</em></h2>
       <p class="subtitle wide">Each one maps to an operation already running on your floor, and to a capability already running on ours.</p>
@@ -901,9 +888,7 @@
 
   <!-- ───── SLIDE 6: WHY IT WORKS ───── -->
   <div class="slide" data-slide="6">
-    <div class="slide-bg" style="background: linear-gradient(135deg, #ffffff 0%, #eaf1fa 50%, #f5f8fc 100%);"></div>
-    <div class="slide-grain"></div>
-    <div class="slide-content">
+    <div class="slide-bg" style="background: linear-gradient(135deg, #ffffff 0%, #eaf1fa 50%, #f5f8fc 100%);"></div>    <div class="slide-content">
       <div class="eyebrow">Why It Works</div>
       <h2>A partner built for the <em>long run.</em></h2>
       <p class="subtitle wide">The value is not a single quote. It is a stable, local source that can invest, scale, and hold quality over years, not quarters.</p>
@@ -932,9 +917,7 @@
 
   <!-- ───── SLIDE 7: NEXT STEPS ───── -->
   <div class="slide" data-slide="7">
-    <div class="slide-bg" style="background: linear-gradient(160deg, #f5f8fc 0%, #ffffff 100%);"></div>
-    <div class="slide-grain"></div>
-    <div class="slide-content">
+    <div class="slide-bg" style="background: linear-gradient(160deg, #f5f8fc 0%, #ffffff 100%);"></div>    <div class="slide-content">
       <div class="eyebrow">Next Steps</div>
       <h2>See the floor for <em>yourself.</em></h2>
       <p class="subtitle wide">The fastest way to size this is to walk our Wichita operation the way we walked yours.</p>
@@ -961,9 +944,7 @@
       <div class="cover-photo" data-bg="cover-4.jpg"></div>
       <div class="cover-photo" data-bg="cover-3.jpg"></div>
     </div>
-    <div class="cover-overlay"></div>
-    <div class="slide-grain"></div>
-    <div class="cover-glow"></div>
+    <div class="cover-overlay"></div>    <div class="cover-glow"></div>
     <div class="slide-content centered contact-content">
       <div class="logo-mark">ENVISION <span class="lm-x">×</span> <span class="lm-bosch">BOSCH</span></div>
       <div class="eyebrow" style="margin-top: 0.5rem;">Let's Build It Together</div>
