@@ -580,10 +580,13 @@
     .step h3 { font-size: 0.78rem; font-weight: 700; margin-bottom: 0.4rem; text-align: center; color: #ffffff; }
     .step p { font-size: 0.7rem; line-height: 1.5; color: #ffffff; margin-top: auto; }
     .floor-banner {
-      height: 168px; margin: 1.1rem 0; border-radius: 5px; overflow: hidden;
-      background-size: cover; background-position: center 42%;
+      position: relative;
+      height: 168px; margin: 1.1rem auto; border-radius: 5px; overflow: hidden;
       box-shadow: 0 18px 40px rgba(8,28,68,0.24), 0 0 0 1px rgba(255,255,255,0.05);
     }
+    /* Banner crossfade layers reuse the cover carousel's slow Ken Burns zoom,
+       rotating between the Wichita and Dallas factory floors. */
+    .floor-banner .cover-photo { background-position: center 42%; }
     .step::after { content: '→'; position: absolute; right: -8px; top: 50%; transform: translateY(-50%); color: var(--green); font-size: 1.1rem; font-weight: 700; z-index: 3; }
     .step:last-child::after { display: none; }
 
@@ -1030,7 +1033,12 @@
         <div class="step"><div class="step-num">4</div><h3>Scope the First Program</h3><p>Compile candidate components and pick a first program to pilot together.</p></div>
       </div>
 
-      <div class="floor-banner" style="background-image:url('floor-tour.jpg')" role="img" aria-label="The Envision Wichita manufacturing floor — 175,000 sq ft of manufacturing, kitting, and print under one roof"></div>
+      <div class="floor-banner">
+        <div class="cover-photo is-active" style="background-image:url('floor-wichita-manufacturing.jpg')" role="img" aria-label="The Envision Wichita manufacturing floor — bag-machine lines under one roof"></div>
+        <div class="cover-photo" data-bg="floor-dallas-manufacturing.jpg" role="img" aria-label="The Envision Dallas manufacturing floor"></div>
+        <div class="cover-photo" data-bg="floor-wichita-warehouse.jpg" role="img" aria-label="The Envision Wichita warehouse"></div>
+        <div class="cover-photo" data-bg="floor-dallas-warehouse.jpg" role="img" aria-label="The Envision Dallas warehouse aisle"></div>
+      </div>
 
       <div class="impact-line">We will pull together a candidate list from the operations we discussed. <span>Pick the tour date</span> and we will host the operations team in Wichita.</div>
     </div>
@@ -1362,10 +1370,10 @@
   prevBtn.disabled = true;
   skipBtn.classList.add('hidden'); // hidden on cover at load
 
-  // ── Photo carousels (home cover + contact hero, each runs independently) ──
+  // ── Photo carousels (home cover + contact hero + next-steps floor banner, each runs independently) ──
   (function () {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // hold first frame, no extra loads
-    document.querySelectorAll('.cover-carousel').forEach((carousel) => {
+    document.querySelectorAll('.cover-carousel, .floor-banner').forEach((carousel) => {
       const photos = carousel.querySelectorAll('.cover-photo');
       if (photos.length < 2) return;
       // Lazy-load: only the first frame ships up front; the rest fetch just before shown.
