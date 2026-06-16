@@ -539,8 +539,8 @@
     .cap-zone-label::before { content: ''; display: block; width: 18px; height: 1px; background: var(--green); opacity: 0.7; }
     .cap-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
     .cap-grid--svc { grid-template-columns: repeat(3, 1fr); }
-    .cap-tile { position: relative; overflow: hidden; background: linear-gradient(160deg, var(--card-2) 0%, var(--card) 100%); border-top: 3px solid transparent; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); min-height: 86px; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
-    .cap-tile:hover, .cap-tile:focus-within { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-top-color: var(--green); }
+    .cap-tile { position: relative; background: linear-gradient(160deg, var(--card-2) 0%, var(--card) 100%); border-top: 3px solid transparent; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); min-height: 86px; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
+    .cap-tile:hover, .cap-tile:focus-within { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-top-color: var(--green); z-index: 40; }
     .cap-tile:focus-visible { outline: 2px solid var(--green-text); outline-offset: -2px; }
     .cap-face { padding: 0.8rem 0.95rem; height: 100%; display: flex; flex-direction: column; justify-content: center; }
     .cap-kind { font-size: 0.5rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.35rem; }
@@ -548,14 +548,22 @@
     .cap-kind--svc { color: #5aa9ff; }
     .cap-tile h3 { font-family: var(--font-display); font-size: 0.82rem; font-weight: 800; color: #ffffff; margin: 0; line-height: 1.2; letter-spacing: -0.01em; }
     .cap-desc {
-      position: absolute; inset: 0; padding: 0.75rem 0.95rem;
+      position: absolute; left: 50%; bottom: calc(100% + 12px);
+      width: 128%; max-width: 300px; min-width: 200px; padding: 0.9rem 1.05rem;
       background: linear-gradient(155deg, var(--card-2) 0%, var(--card) 100%);
+      border-top: 3px solid var(--green); border-radius: var(--radius-sm);
+      box-shadow: 0 22px 48px -12px rgba(0,16,52,0.65);
       display: flex; align-items: center;
-      opacity: 0; visibility: hidden; transform: translateY(6px);
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transform: translateX(-50%) translateY(8px) scale(0.97); transform-origin: bottom center;
       transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
     }
-    .cap-tile:hover .cap-desc, .cap-tile:focus-within .cap-desc { opacity: 1; visibility: visible; transform: none; }
-    .cap-desc p { font-size: 0.63rem; line-height: 1.42; color: rgba(255,255,255,0.95); font-weight: 500; margin: 0; }
+    .cap-desc::after {
+      content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      border: 8px solid transparent; border-top-color: var(--card);
+    }
+    .cap-tile:hover .cap-desc, .cap-tile:focus-within .cap-desc { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0) scale(1); }
+    .cap-desc p { font-size: 0.66rem; line-height: 1.46; color: rgba(255,255,255,0.95); font-weight: 500; margin: 0; }
 
     /* ── NEXT STEPS ── */
     .steps-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.85rem; margin: 1.25rem 0; }
