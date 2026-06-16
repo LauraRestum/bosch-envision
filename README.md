@@ -15,7 +15,7 @@ No build step — it's plain HTML/CSS/JS served from the repo root.
 ## Assets
 
 - `cover-1.jpg … cover-5.jpg` — compressed photo-carousel frames (each < 300 KB), shared by the home cover and the Contact ("Let's Build It Together") hero. `cover-1.jpg` (Wichita campus) is preloaded; the rest lazy-load as the carousel advances. Any `.cover-carousel` on the page rolls independently.
-- The white Envision cover logo is inlined as base64; `Envision_PrimaryLogo_WHITE[49404].png` is its source
+- `envision-logo-white.png` — the white Envision wordmark used in the cover lockup (next to `× BOSCH`)
 - Slide photography is pulled from the Envision capabilities and Streamlight decks, resized and compressed to web size (< 250 KB each), each matched to what the slide shows:
   - `campus-map-wichita.jpg` / `campus-map-dallas.jpg` — Campuses slide card headers (campus photo + location map, from the capabilities deck)
   - `mission-child.jpg` / `mission-walk.jpg` — Mission band, flanking the quote (child development center / White Cane Day Walk, from the capabilities deck)
