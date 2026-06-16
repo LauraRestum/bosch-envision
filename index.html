@@ -259,10 +259,10 @@
     /* ── STATS / COMBINED BAND ── */
     .stats-band {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.65rem;
-      margin: 1.25rem 0;
+      margin: 0.8rem 0;
     }
     .stat-cell {
-      padding: 1.15rem 1rem; background: linear-gradient(160deg, var(--card-2) 0%, var(--card) 100%);
+      padding: 0.95rem 1rem; background: linear-gradient(160deg, var(--card-2) 0%, var(--card) 100%);
       text-align: center; border-radius: var(--radius); box-shadow: var(--shadow-card);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
@@ -272,13 +272,14 @@
     .stat-l { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #ffffff; margin-top: 0.5rem; }
 
     /* ── CAMPUS CARDS ── */
-    .campus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.25rem 0; }
+    .campus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0.7rem 0; }
     .campus-card {
       background: linear-gradient(160deg, var(--card-2) 0%, var(--card) 100%); padding: 1.4rem 1.5rem;
-      border-radius: var(--radius); box-shadow: var(--shadow-card);
+      border-radius: var(--radius); box-shadow: var(--shadow-card); overflow: hidden;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
     .campus-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .campus-photo { height: 52px; margin: -1.4rem -1.5rem 0.8rem; background-size: cover; background-position: center; }
     .campus-name { font-family: var(--font-display); }
     .campus-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; }
     .campus-name { font-size: 1.05rem; font-weight: 800; color: #ffffff; }
@@ -296,7 +297,7 @@
     .fed-band {
       display: grid; grid-template-columns: 0.9fr 3fr; gap: 1.5rem; align-items: center;
       background: linear-gradient(140deg, #08224c 0%, #0c2a5a 100%);
-      border-left: 3px solid var(--green); padding: 1.15rem 1.5rem; border-radius: var(--radius);
+      border-left: 3px solid var(--green); padding: 1rem 1.5rem; border-radius: var(--radius);
       box-shadow: var(--shadow-card);
     }
     .fed-band-label { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 0.35rem; }
@@ -307,15 +308,22 @@
     .fed-stat .ctx { font-size: 0.64rem; line-height: 1.45; color: #ffffff; margin-top: 4px; }
 
     /* ── MISSION SLIDE ── */
-    .mission-quote {
-      font-family: var(--font-display);
-      font-size: 1.4rem; font-weight: 700; line-height: 1.4;
-      letter-spacing: -0.015em; color: #00346D; max-width: 880px; margin: 0.5rem 0 1.5rem;
+    .ms-band {
+      border-radius: var(--radius); overflow: hidden; margin: 0.45rem 0 1.1rem;
+      display: grid; grid-template-columns: minmax(120px,1.1fr) 3fr minmax(120px,1.1fr);
+      min-height: 130px; box-shadow: var(--shadow-card);
     }
-    .mission-quote span { color: var(--green-text); }
-    .mission-proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.65rem; margin-bottom: 1.25rem; }
+    .ms-band__photo { background-size: cover; background-position: center; }
+    .ms-band__quote { background: linear-gradient(160deg, var(--card-2) 0%, var(--card) 100%); display: flex; align-items: center; justify-content: center; padding: 1rem 2.4rem; }
+    .ms-band__quote p {
+      font-family: var(--font-display);
+      color: #fff; font-style: italic; font-weight: 500; text-align: center;
+      font-size: 1.05rem; line-height: 1.45; max-width: 64ch; margin: 0;
+    }
+    .ms-band__quote span { color: var(--green); font-style: normal; font-weight: 600; }
+    .mission-proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.65rem; margin-bottom: 1.1rem; }
     .mp-cell {
-      background: linear-gradient(160deg, var(--card-2) 0%, var(--card) 100%); padding: 1.15rem 1.3rem;
+      background: linear-gradient(160deg, var(--card-2) 0%, var(--card) 100%); padding: 1.1rem 1.3rem;
       border-radius: var(--radius); box-shadow: var(--shadow-card);
     }
     .mp-cell .num { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--green); letter-spacing: -0.02em; }
@@ -384,10 +392,11 @@
     .opp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
     .opp-tile {
       background: linear-gradient(160deg, var(--card-2) 0%, var(--card) 100%); padding: 1.3rem 1.4rem; cursor: pointer;
-      border-top: 3px solid transparent; border-radius: var(--radius); box-shadow: var(--shadow-card);
+      border-top: 3px solid transparent; border-radius: var(--radius); box-shadow: var(--shadow-card); overflow: hidden;
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; position: relative;
     }
     .opp-tile:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-top-color: var(--green); }
+    .opp-photo { height: 74px; margin: -1.3rem -1.4rem 0.9rem; background-size: cover; background-position: center; }
     .opp-tile.featured { background: linear-gradient(140deg, #0e2c5e 0%, var(--card) 100%); border-top-color: var(--green-text); }
     .opp-tile h3 { font-family: var(--font-display); }
     .opp-tag { font-size: 0.56rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green); margin-bottom: 0.55rem; display: flex; align-items: center; gap: 0.5rem; }
@@ -427,6 +436,7 @@
     .opp-close:hover { background: rgba(255,255,255,0.14); color: #ffffff; }
     .opp-close svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; }
     .opp-modal-body { padding: 1.5rem 2rem 2rem; }
+    .opp-modal-photo { height: 180px; margin: -1.5rem -2rem 1.4rem; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
     .opp-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1.4rem; }
     .opp-detail-cell { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-sm); padding: 0.95rem 1.1rem; }
     .opp-detail-cell .dl { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 0.35rem; }
@@ -447,14 +457,39 @@
     .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; margin: 1.25rem 0; }
     .why-card {
       background: linear-gradient(160deg, var(--card-2) 0%, var(--card) 100%); padding: 1.4rem 1.4rem;
-      border-top: 3px solid transparent; border-radius: var(--radius); box-shadow: var(--shadow-card);
+      border-top: 3px solid transparent; border-radius: var(--radius); box-shadow: var(--shadow-card); overflow: hidden;
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
     .why-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-top-color: var(--green-text); }
+    .why-photo { height: 86px; margin: -1.4rem -1.4rem 1rem; background-size: cover; background-position: center; }
     .why-card h3 { font-size: 0.92rem; font-weight: 700; color: #ffffff; margin-bottom: 0.4rem; }
     .why-card p { font-size: 0.76rem; line-height: 1.55; color: rgba(255,255,255,0.94); }
     .why-icon { width: 40px; height: 40px; background: rgba(120,190,33,0.1); border: 1px solid rgba(120,190,33,0.18); border-radius: 11px; display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; }
     .why-icon svg { width: 18px; height: 18px; stroke: var(--green); fill: none; stroke-width: 2; }
+
+    /* ── CAPABILITIES & SERVICES (hover-reveal) ── */
+    .cap-zone { margin-top: 0.85rem; }
+    .cap-zone-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green-text); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.6rem; }
+    .cap-zone-label::before { content: ''; display: block; width: 18px; height: 1px; background: var(--green); opacity: 0.7; }
+    .cap-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+    .cap-grid--svc { grid-template-columns: repeat(3, 1fr); }
+    .cap-tile { position: relative; overflow: hidden; background: linear-gradient(160deg, var(--card-2) 0%, var(--card) 100%); border-top: 3px solid transparent; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); min-height: 86px; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
+    .cap-tile:hover, .cap-tile:focus-within { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-top-color: var(--green); }
+    .cap-tile:focus-visible { outline: 2px solid var(--green-text); outline-offset: -2px; }
+    .cap-face { padding: 0.8rem 0.95rem; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+    .cap-kind { font-size: 0.5rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.35rem; }
+    .cap-kind--cap { color: var(--green); }
+    .cap-kind--svc { color: #5aa9ff; }
+    .cap-tile h3 { font-family: var(--font-display); font-size: 0.82rem; font-weight: 800; color: #ffffff; margin: 0; line-height: 1.2; letter-spacing: -0.01em; }
+    .cap-desc {
+      position: absolute; inset: 0; padding: 0.75rem 0.95rem;
+      background: linear-gradient(155deg, var(--card-2) 0%, var(--card) 100%);
+      display: flex; align-items: center;
+      opacity: 0; visibility: hidden; transform: translateY(6px);
+      transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+    }
+    .cap-tile:hover .cap-desc, .cap-tile:focus-within .cap-desc { opacity: 1; visibility: visible; transform: none; }
+    .cap-desc p { font-size: 0.63rem; line-height: 1.42; color: rgba(255,255,255,0.95); font-weight: 500; margin: 0; }
 
     /* ── NEXT STEPS ── */
     .steps-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.85rem; margin: 1.25rem 0; }
@@ -468,6 +503,11 @@
     .step-num { font-family: var(--font-display); font-size: 1.7rem; font-weight: 800; color: var(--green); letter-spacing: -0.03em; margin-bottom: 0.4rem; }
     .step h3 { font-size: 0.78rem; font-weight: 700; margin-bottom: 0.4rem; text-align: center; color: #ffffff; }
     .step p { font-size: 0.7rem; line-height: 1.5; color: #ffffff; margin-top: auto; }
+    .floor-banner {
+      height: 168px; margin: 1.1rem 0; border-radius: 5px; overflow: hidden;
+      background-size: cover; background-position: center 42%;
+      box-shadow: 0 18px 40px rgba(8,28,68,0.24), 0 0 0 1px rgba(255,255,255,0.05);
+    }
     .step::after { content: '→'; position: absolute; right: -8px; top: 50%; transform: translateY(-50%); color: var(--green); font-size: 1.1rem; font-weight: 700; z-index: 3; }
     .step:last-child::after { display: none; }
 
@@ -488,6 +528,20 @@
     .logo-mark span { color: var(--green-text); }
     .logo-mark .lm-x { color: #0f2346; font-weight: 600; }
     .logo-mark .lm-bosch { color: var(--bosch-red); }
+
+    /* Contact slide sits on the rolling photo hero + dark-blue overlay, so its
+       text is recoloured for a dark background (scoped, like the cover). */
+    .contact-content .eyebrow { color: var(--green); }
+    .contact-content .logo-mark { color: #ffffff; }
+    .contact-content .logo-mark .lm-x { color: rgba(255,255,255,0.45); }
+    .contact-content .logo-mark .lm-bosch { color: #ff5a64; }
+    .contact-content h2 { color: #ffffff; }
+    .contact-content h2 em { color: var(--green); }
+    .contact-content .subtitle { color: rgba(255,255,255,0.9); }
+    .contact-content .contact-card { background: rgba(7,26,58,0.62); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.14); border-top: 2px solid var(--green); }
+    .contact-content .contact-addrs { color: rgba(255,255,255,0.82); }
+    .contact-content .contact-addrs strong { color: #ffffff; }
+    .contact-content .contact-addrs a:hover { color: var(--green); }
 
     /* ── ENTRANCE ANIMATIONS ── */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -531,7 +585,7 @@
   <div class="logo">ENVISION <span class="logo-x">×</span> <span class="logo-bosch">BOSCH</span></div>
   <div class="nav-controls">
     <div class="nav-dots" id="navDots"></div>
-    <div class="slide-counter"><span class="current" id="currentSlide">01</span> / <span id="totalSlides">08</span></div>
+    <div class="slide-counter"><span class="current" id="currentSlide">01</span> / <span id="totalSlides">09</span></div>
     <div class="nav-arrows">
       <button class="nav-arrow" id="prevBtn" onclick="changeSlide(-1)" aria-label="Previous slide"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
       <button class="nav-arrow" id="nextBtn" onclick="changeSlide(1)" aria-label="Next slide"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
@@ -586,6 +640,7 @@
 
       <div class="campus-grid">
         <article class="campus-card">
+          <div class="campus-photo" style="background-image:url('campus-map-wichita.jpg')" role="img" aria-label="Envision Wichita campus with a map locating it south of downtown near I-235 and Eisenhower National Airport"></div>
           <div class="campus-head">
             <div class="campus-name">Wichita Campus<small>Wichita, KS</small></div>
             <div class="campus-id"><strong>Since 1933</strong></div>
@@ -602,6 +657,7 @@
         </article>
 
         <article class="campus-card">
+          <div class="campus-photo" style="background-image:url('campus-map-dallas.jpg')" role="img" aria-label="Envision Dallas campus with a map locating it in Farmers Branch near I-635, the Dallas North Tollway, and DFW Airport"></div>
           <div class="campus-head">
             <div class="campus-name">Dallas Campus<small>Farmers Branch, TX</small></div>
             <div class="campus-id"><strong>Since 1931</strong></div>
@@ -639,7 +695,13 @@
     <div class="slide-grain"></div>
     <div class="slide-content">
       <div class="eyebrow">Our Mission</div>
-      <p class="mission-quote">"To improve the quality of life and provide inspiration and opportunity for people who are <span>blind or have low vision</span> through employment, outreach, rehabilitation, education and research."</p>
+      <div class="ms-band">
+        <div class="ms-band__photo" style="background-image:url('mission-child.jpg');background-position:70% center" role="img" aria-label="A child at the Envision Child Development Center playing on the soft-block floor"></div>
+        <div class="ms-band__quote">
+          <p>"To improve the quality of life and provide inspiration and opportunity for people who are <span>blind or have low vision</span> through employment, outreach, rehabilitation, education and research."</p>
+        </div>
+        <div class="ms-band__photo" style="background-image:url('mission-walk.jpg');background-position:center 65%" role="img" aria-label="Community members gathered behind a White Cane Day Walk banner"></div>
+      </div>
 
       <div class="mission-proof">
         <div class="mp-cell"><div class="num">88%</div><div class="lab">BVI Direct Labor</div><div class="ctx">Combined Direct Labor performed by team members who are blind or have low vision. Substantially exceeds AbilityOne's 75% threshold.</div></div>
@@ -728,6 +790,7 @@
 
       <div class="opp-grid">
         <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('metal')">
+          <div class="opp-photo" style="background-image:url('fit-upstream.jpg')" role="img" aria-label="Small-press stamping operation"></div>
           <div class="opp-tag">Opportunity 01</div>
           <h3>Sheet Metal Components</h3>
           <p class="opp-line">Small-press stamping of the metal parts you make in-house today, on your dies.</p>
@@ -735,6 +798,7 @@
         </div>
 
         <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('kitting')">
+          <div class="opp-photo" style="background-image:url('opp-kitting.jpg')" role="img" aria-label="Envision team member assembling packaged kits on the line"></div>
           <div class="opp-tag">Opportunity 02</div>
           <h3>Parts Kitting &amp; Assembly</h3>
           <p class="opp-line">Pre-built kits and sub-assemblies delivered ready for your line, mirroring your Source One model.</p>
@@ -742,6 +806,7 @@
         </div>
 
         <div class="opp-tile" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('print')">
+          <div class="opp-photo" style="background-image:url('opp-print.jpg')" role="img" aria-label="Envision-branded label rolls from the Wichita print operation"></div>
           <div class="opp-tag">Opportunity 03</div>
           <h3>Print, Labels &amp; Booklets</h3>
           <p class="opp-line">The booklets and labels shipping in every unit, produced by our Wichita print operation.</p>
@@ -749,6 +814,7 @@
         </div>
 
         <div class="opp-tile featured" role="button" tabindex="0" aria-haspopup="dialog" onclick="openOpp('wiring')">
+          <div class="opp-photo" style="background-image:url('opp-wiring.jpg')" role="img" aria-label="Close, repetitive component sub-assembly handwork"></div>
           <div class="opp-tag">Opportunity 04</div>
           <h3>Wiring &amp; Sub-Assembly</h3>
           <p class="opp-line">Your longest cycle time and most labor-intensive operation, offloaded to where repetition is the strength.</p>
@@ -758,8 +824,87 @@
     </div>
   </div>
 
-  <!-- ───── SLIDE 5: WHY IT WORKS ───── -->
+  <!-- ───── SLIDE 5: CAPABILITIES & SERVICES (hover reveals overview) ───── -->
   <div class="slide" data-slide="5">
+    <div class="slide-bg" style="background: linear-gradient(160deg, #eef3fa 0%, #ffffff 100%);"></div>
+    <div class="slide-grain"></div>
+    <div class="slide-content">
+      <div class="eyebrow">The Full System</div>
+      <h2>Everything Envision can <em>build and run.</em></h2>
+      <p class="subtitle wide">Eight manufacturing capabilities and the services that support them, all shipping under contract today. Hover any tile for the overview.</p>
+
+      <div class="cap-zone">
+        <div class="cap-zone-label">Capabilities</div>
+        <div class="cap-grid">
+          <div class="cap-tile" tabindex="0">
+            <div class="cap-face"><span class="cap-kind cap-kind--cap">Capability</span><h3>Polymer &amp; Film Manufacturing</h3></div>
+            <div class="cap-desc"><p>An end-to-end domestic production process — sample development, production, and pack &amp; ship — converting polyethylene film into finished can liners, medical and specialty bags, and plastic sheeting. HDPE and LLDPE across a wide range of gauges and sizes.</p></div>
+          </div>
+          <div class="cap-tile" tabindex="0">
+            <div class="cap-face"><span class="cap-kind cap-kind--cap">Capability</span><h3>Textile &amp; Apparel</h3></div>
+            <div class="cap-desc"><p>Heavy sewing operations producing Berry-compliant military gear and ANSI-certified high-visibility safety apparel. Gerber Paragon CNC cutting from partner-supplied digital patterns and markers.</p></div>
+          </div>
+          <div class="cap-tile" tabindex="0">
+            <div class="cap-face"><span class="cap-kind cap-kind--cap">Capability</span><h3>Reflective Safety Systems</h3></div>
+            <div class="cap-desc"><p>In-house sewing and assembly of high-visibility reflective products. Vinyl and nylon received on rolls, sewn together, fitted with buckles and hardware, and finished in house for high-visibility safety applications.</p></div>
+          </div>
+          <div class="cap-tile" tabindex="0">
+            <div class="cap-face"><span class="cap-kind cap-kind--cap">Capability</span><h3>Binders &amp; Document Covers</h3></div>
+            <div class="cap-desc"><p>Custom binders, presentation portfolios, and document covers out of the Dallas campus — vinyl and presentation award, retirement, hardcover and custom, certificate and document covers, and Texas State Seal portfolios.</p></div>
+          </div>
+          <div class="cap-tile" tabindex="0">
+            <div class="cap-face"><span class="cap-kind cap-kind--cap">Capability</span><h3>Writing Instruments</h3></div>
+            <div class="cap-desc"><p>Marker assembly and pen lines — dry erase, highlighters, and permanent markers from the Dallas campus, plus pens assembled at the Wichita campus. AbilityOne, Texas WorkQuest, and Kansas State Use catalog SKUs.</p></div>
+          </div>
+          <div class="cap-tile" tabindex="0">
+            <div class="cap-face"><span class="cap-kind cap-kind--cap">Capability</span><h3>Fulfillment &amp; Distribution</h3></div>
+            <div class="cap-desc"><p>Federal-grade rigor applied to commercial fulfillment. The qualification work is already done: compliant, audited fulfillment that ships anywhere and integrates with your systems, on a federal-compliant labor model.</p></div>
+          </div>
+          <div class="cap-tile" tabindex="0">
+            <div class="cap-face"><span class="cap-kind cap-kind--cap">Capability</span><h3>Kitting &amp; Assembly</h3></div>
+            <div class="cap-desc"><p>Value-add kitting and assembly that builds finished, ready-to-issue kits from component parts, including military kit builds, on a federal-compliant labor model.</p></div>
+          </div>
+          <div class="cap-tile" tabindex="0">
+            <div class="cap-face"><span class="cap-kind cap-kind--cap">Capability</span><h3>Specialty Products</h3></div>
+            <div class="cap-desc"><p>Custom decoration and bespoke production. Logo embroidery and heat-transfer logo application on apparel and finished goods, plus specialty product lines built to customer specification.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cap-zone">
+        <div class="cap-zone-label">Services</div>
+        <div class="cap-grid cap-grid--svc">
+          <div class="cap-tile" tabindex="0">
+            <div class="cap-face"><span class="cap-kind cap-kind--svc">Service</span><h3>Print</h3></div>
+            <div class="cap-desc"><p>Web-to-print storefronts with customer-approved templates, instant soft proofs, and configurable approvals — the front door to federal-grade commercial print out of Wichita. Digital and offset production, bindery, and in-house Grade 2 and Computer Braille embossing.</p></div>
+          </div>
+          <div class="cap-tile" tabindex="0">
+            <div class="cap-face"><span class="cap-kind cap-kind--svc">Service</span><h3>Envision Contact Center</h3></div>
+            <div class="cap-desc"><p>Bi-locational, multi-channel customer service operations built for federal and enterprise scale. Phone, email, chat, and digital support out of two synchronized sites in Dallas and Wichita, on an AbilityOne-compliant labor model.</p></div>
+          </div>
+          <div class="cap-tile" tabindex="0">
+            <div class="cap-face"><span class="cap-kind cap-kind--svc">Service</span><h3>Secure Document Services</h3></div>
+            <div class="cap-desc"><p>High-security mailroom operations for federal agencies, including IRS mailroom contracts in Dallas and Farmers Branch. High-speed scan, OCR/ICR digitization, encrypted archive, and certified destruction.</p></div>
+          </div>
+          <div class="cap-tile" tabindex="0">
+            <div class="cap-face"><span class="cap-kind cap-kind--svc">Service</span><h3>Accessibility Services</h3></div>
+            <div class="cap-desc"><p>ADA Title II consulting, WCAG-aligned audits, training, and user testing — with lived-experience expertise on every engagement.</p></div>
+          </div>
+          <div class="cap-tile" tabindex="0">
+            <div class="cap-face"><span class="cap-kind cap-kind--svc">Service</span><h3>Federal Procurement Services</h3></div>
+            <div class="cap-desc"><p>A managed pathway into federal and military procurement. We handle the channel infrastructure, compliance credentials, and procurement intelligence so manufacturers can sell into government markets without building the federal machinery themselves.</p></div>
+          </div>
+          <div class="cap-tile" tabindex="0">
+            <div class="cap-face"><span class="cap-kind cap-kind--svc">Service</span><h3>Quality Assurance &amp; Compliance</h3></div>
+            <div class="cap-desc"><p>ISO 9001:2015 across the Wichita and Dallas campuses. Material and dimensional validation against gauge, strength, and spec in the on-site Quality Labs, with DCMA Alternate Release authorized out of Dallas.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───── SLIDE 6: WHY IT WORKS ───── -->
+  <div class="slide" data-slide="6">
     <div class="slide-bg" style="background: linear-gradient(135deg, #ffffff 0%, #eaf1fa 50%, #f5f8fc 100%);"></div>
     <div class="slide-grain"></div>
     <div class="slide-content">
@@ -769,17 +914,17 @@
 
       <div class="why-grid">
         <div class="why-card">
-          <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+          <div class="why-photo" style="background-image:url('why-reliable.jpg')" role="img" aria-label="A longtime Envision team member on the warehouse floor"></div>
           <h3>Reliable by Design</h3>
           <p>Our workforce is built around consistency and retention above industry average. The repetitive operations that strain a traditional line are the ones we hold steady.</p>
         </div>
         <div class="why-card">
-          <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16l4-4 3 3 5-6"/></svg></div>
+          <div class="why-photo" style="background-image:url('fit-upstream.jpg')" role="img" aria-label="A small production press of the kind Envision stands up for a program"></div>
           <h3>Stable Enough to Invest</h3>
           <p>Financial stability lets us stand up equipment for a program rather than asking you to. Small presses run $100K to $200K, with Bosch dies. We can carry that investment.</p>
         </div>
         <div class="why-card">
-          <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05"/></svg></div>
+          <div class="why-photo" style="background-image:url('why-equipment.jpg')" role="img" aria-label="Rows of production equipment on the Envision manufacturing floor"></div>
           <h3>Equipment Pathway</h3>
           <p>As Bosch decommissions older lines, that tooling can move to our floor instead of to scrap. It is a clean way to seed a program with proven equipment.</p>
         </div>
@@ -789,8 +934,8 @@
     </div>
   </div>
 
-  <!-- ───── SLIDE 6: NEXT STEPS ───── -->
-  <div class="slide" data-slide="6">
+  <!-- ───── SLIDE 7: NEXT STEPS ───── -->
+  <div class="slide" data-slide="7">
     <div class="slide-bg" style="background: linear-gradient(160deg, #f5f8fc 0%, #ffffff 100%);"></div>
     <div class="slide-grain"></div>
     <div class="slide-content">
@@ -805,15 +950,25 @@
         <div class="step"><div class="step-num">4</div><h3>Scope the First Program</h3><p>Compile candidate components and pick a first program to pilot together.</p></div>
       </div>
 
+      <div class="floor-banner" style="background-image:url('floor-tour.jpg')" role="img" aria-label="The Envision Wichita manufacturing floor — 175,000 sq ft of manufacturing, kitting, and print under one roof"></div>
+
       <div class="impact-line">We will pull together a candidate list from the operations we discussed. <span>Pick the tour date</span> and we will host the operations team in Wichita.</div>
     </div>
   </div>
 
-  <!-- ───── SLIDE 7: CONTACT ───── -->
-  <div class="slide" data-slide="7">
-    <div class="slide-bg" style="background: linear-gradient(135deg, #ffffff 0%, #e3edf8 40%, #f5f8fc 100%);"></div>
+  <!-- ───── SLIDE 8: CONTACT ───── -->
+  <div class="slide" data-slide="8">
+    <div class="cover-carousel">
+      <div class="cover-photo is-active" style="background-image:url('cover-1.jpg')"></div>
+      <div class="cover-photo" data-bg="cover-5.jpg"></div>
+      <div class="cover-photo" data-bg="cover-2.jpg"></div>
+      <div class="cover-photo" data-bg="cover-4.jpg"></div>
+      <div class="cover-photo" data-bg="cover-3.jpg"></div>
+    </div>
+    <div class="cover-overlay"></div>
     <div class="slide-grain"></div>
-    <div class="slide-content centered">
+    <div class="cover-glow"></div>
+    <div class="slide-content centered contact-content">
       <div class="logo-mark">ENVISION <span class="lm-x">×</span> <span class="lm-bosch">BOSCH</span></div>
       <div class="eyebrow" style="margin-top: 0.5rem;">Let's Build It Together</div>
       <h2 style="margin-bottom: 0.6rem;">Get in Touch</h2>
@@ -872,7 +1027,7 @@
   })();
 
   let currentSlide = 0;
-  const totalSlides = 8;
+  const totalSlides = 9;
   const slides = document.querySelectorAll('.slide');
   const dotsContainer = document.getElementById('navDots');
   const currentEl = document.getElementById('currentSlide');
@@ -911,6 +1066,7 @@
   const opps = {
     metal: {
       tag: 'Opportunity 01',
+      img: 'fit-upstream.jpg', imgAlt: 'Small-press stamping operation on the Envision floor',
       title: 'Sheet Metal Components',
       sub: 'Small-press stamping of the metal parts you produce in-house today, run on your dies, on our floor.',
       details: [
@@ -927,6 +1083,7 @@
     },
     kitting: {
       tag: 'Opportunity 02',
+      img: 'opp-kitting.jpg', imgAlt: 'Envision team member assembling packaged kits on the line',
       title: 'Parts Kitting & Assembly',
       sub: 'Pre-built kits and sub-assemblies delivered line-ready, mirroring the model your Source One division already runs.',
       details: [
@@ -943,6 +1100,7 @@
     },
     print: {
       tag: 'Opportunity 03',
+      img: 'opp-print.jpg', imgAlt: 'Envision-branded label rolls from the Wichita print operation',
       title: 'Print, Labels & Booklets',
       sub: 'The booklets and labels shipping inside every unit, produced by Envision’s established Wichita print operation.',
       details: [
@@ -959,6 +1117,7 @@
     },
     wiring: {
       tag: 'Opportunity 04',
+      img: 'opp-wiring.jpg', imgAlt: 'Close, repetitive component sub-assembly handwork',
       title: 'Wiring & Sub-Assembly',
       sub: 'Your longest cycle time and most labor-intensive operation, moved to where repetition is the core strength.',
       details: [
@@ -983,7 +1142,9 @@
     document.getElementById('oppModalTag').textContent = o.tag;
     document.getElementById('oppModalTitle').textContent = o.title;
     document.getElementById('oppModalSub').textContent = o.sub;
-    let html = '<div class="opp-detail-grid">';
+    let html = '';
+    if (o.img) html += '<div class="opp-modal-photo" style="background-image:url(\'' + o.img + '\')" role="img" aria-label="' + (o.imgAlt || '') + '"></div>';
+    html += '<div class="opp-detail-grid">';
     o.details.forEach(d => { html += '<div class="opp-detail-cell"><div class="dl">' + d[0] + '</div><div class="dv">' + d[1] + '</div></div>'; });
     html += '</div>';
     html += '<div class="opp-section-h">Why it fits</div><ul class="opp-points">';
@@ -1038,32 +1199,34 @@
   prevBtn.disabled = true;
   skipBtn.classList.add('hidden'); // hidden on cover at load
 
-  // ── Cover photo carousel ──
+  // ── Photo carousels (home cover + contact hero, each runs independently) ──
   (function () {
-    const photos = document.querySelectorAll('.cover-photo');
-    if (photos.length < 2) return;
-    // Lazy-load: only cover-1 ships up front; the rest fetch just before they're shown.
-    const ensureLoaded = (el) => {
-      if (el && el.dataset.bg) {
-        el.style.backgroundImage = "url('" + el.dataset.bg + "')";
-        delete el.dataset.bg;
-      }
-    };
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // hold first frame, no extra loads
-    ensureLoaded(photos[1]); // prefetch the next frame so the first fade is ready
-    let i = 0;
-    const INTERVAL = 5500; // ms each photo is shown
-    setInterval(() => {
-      photos[i].classList.remove('is-active');
-      i = (i + 1) % photos.length;
-      ensureLoaded(photos[i]);                         // current frame (already prefetched last round)
-      ensureLoaded(photos[(i + 1) % photos.length]);   // prefetch the one after
-      // retrigger the zoom animation cleanly
-      photos[i].style.animation = 'none';
-      void photos[i].offsetWidth;   // force reflow
-      photos[i].style.animation = '';
-      photos[i].classList.add('is-active');
-    }, INTERVAL);
+    document.querySelectorAll('.cover-carousel').forEach((carousel) => {
+      const photos = carousel.querySelectorAll('.cover-photo');
+      if (photos.length < 2) return;
+      // Lazy-load: only the first frame ships up front; the rest fetch just before shown.
+      const ensureLoaded = (el) => {
+        if (el && el.dataset.bg) {
+          el.style.backgroundImage = "url('" + el.dataset.bg + "')";
+          delete el.dataset.bg;
+        }
+      };
+      ensureLoaded(photos[1]); // prefetch the next frame so the first fade is ready
+      let i = 0;
+      const INTERVAL = 5500; // ms each photo is shown
+      setInterval(() => {
+        photos[i].classList.remove('is-active');
+        i = (i + 1) % photos.length;
+        ensureLoaded(photos[i]);                         // current frame (already prefetched last round)
+        ensureLoaded(photos[(i + 1) % photos.length]);   // prefetch the one after
+        // retrigger the zoom animation cleanly
+        photos[i].style.animation = 'none';
+        void photos[i].offsetWidth;   // force reflow
+        photos[i].style.animation = '';
+        photos[i].classList.add('is-active');
+      }, INTERVAL);
+    });
   })();
 </script>
 
